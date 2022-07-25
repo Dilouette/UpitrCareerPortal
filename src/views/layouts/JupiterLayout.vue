@@ -58,7 +58,7 @@
               <div class="flex-shrink-0 flex items-center px-4">
                 <img
                   class="h-8 w-auto"
-                  src="../../assets/images/logo.svg"
+                  src="../../assets/logo.svg"
                   alt="Upitr logo"
                 />
               </div>
