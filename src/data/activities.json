@@ -1,0 +1,57 @@
+[
+    {
+      "title": "General Meeting",
+      "type": "Call",
+      "relatedTo": "Meeting",
+      "date": "24/10/2022",
+      "time": "12:19 PM",
+      "attendees": ["Adele John", "John Newton", "Lily Sandalwool"],
+      "assignees": ["Adam Smith", "John Doe", "Lily Jane"]
+    },
+    {
+      "title": "Job Interview",
+      "type": "Interview",
+      "relatedTo": "Candidate",
+      "date": "02/10/2021",
+      "time": "6:01 PM",
+      "attendees": ["Adele John", "John Newton"],
+      "assignees": ["Adam Smith", "John Doe", "Lily Jane"]
+    },
+    {
+      "title": "Candidate Assessment",
+      "type": "Task",
+      "relatedTo": "Task",
+      "date": "28/01/2022",
+      "time": "4:48 AM",
+      "attendees": ["Lily Sandalwool"],
+      "assignees": ["Adam Smith", "John Doe", "Lily Jane"]
+    },
+    {
+      "title": "Job Interview",
+      "type": "Interview",
+      "relatedTo": "Inteview",
+      "date": "02/10/2021",
+      "time": "6:01 PM",
+      "attendees": ["Adele John",  "Lily Sandalwool"],
+      "assignees": ["Adam Smith", "John Doe", "Lily Jane"]
+    },
+    {
+      "title": "General Meeting",
+      "type": "Call",
+      "relatedTo": "Meeting",
+      "date": "24/10/2022",
+      "time": "12:19 PM",
+      "attendees": ["John Newton", "Lily Sandalwool"],
+      "assignees": ["Adam Smith", "John Doe", "Lily Jane"]
+    },
+    {
+      "title": "Reminder Email",
+      "type": "Task",
+      "relatedTo": "Email",
+      "date": "05/01/2022",
+      "time": "4:16 PM",
+      "attendees": ["Adele John"],
+      "assignees": ["Adam Smith", "John Doe"]
+    }
+  ]
+  

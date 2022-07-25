@@ -1,0 +1,122 @@
+[
+	{
+		"id": "83725ECF-AD5B-25D3-238F-F365D4B83290",
+		"position": "Accountant",
+		"department": "Accounting ",
+		"location": "Lagos",
+		"status": 0,
+		"minimumSalary": 65080,
+		"maximumSalary": 89806,
+		"headcount": 2,
+		"applied": 200,
+		"dateCreated": "Jan 18th, 2022"
+	},
+	{
+		"id": "73E0AB65-5BFE-9F78-65C3-D4051181A14D",
+		"position": "HR Manager",
+		"department": "Human Resources ",
+		"location": "Onitsha",
+		"status": 1,
+		"minimumSalary": 55184,
+		"maximumSalary": 86428,
+		"headcount": 1,
+		"applied": 200,
+		"dateCreated": "Dec 27th, 2021"
+	},
+	{
+		"id": "9F357B20-2C8C-1BBE-5CDB-BA7464F7CDC3",
+		"position": "Operator",
+		"department": "Operations ",
+		"location": "Ikot Ekpene",
+		"status": 2,
+		"headcount": 2,
+		"minimumSalary": 50376,
+		"maximumSalary": 75471,
+		"applied": 200,
+		"dateCreated": "Apr 14th, 2022"
+	},
+	{
+		"id": "189ECAE5-0217-6CA5-7AA0-58BF7285661A",
+		"position": "Head of Operations",
+		"department": "Operations ",
+		"location": "Sokoto",
+		"status": 2,
+		"headcount": 1,
+		"minimumSalary": 51967,
+		"maximumSalary": 75008,
+		"applied": 200,
+		"dateCreated": "Apr 28th, 2022"
+	},
+	{
+		"id": "762C54CA-4A98-AD5E-9324-9FF2B85A15E6",
+		"position": "Marketer",
+		"department": "Marketing ",
+		"location": "Sagamu",
+		"status": 1,
+		"headcount": 4,
+		"minimumSalary": 50216,
+		"maximumSalary": 75127,
+		"applied": 200,
+		"dateCreated": "Dec 24th, 2021"
+	},
+	{
+		"id": "2957E6F1-315C-A62D-C071-4BAB84518F44",
+		"position": "Store Manager",
+		"department": "Purchase ",
+		"location": "Uyo",
+		"status": 0,
+		"headcount": 1,
+		"minimumSalary": 71213,
+		"maximumSalary": 89166,
+		"applied": 200,
+		"dateCreated": "Dec 30th, 2021"
+	},
+	{
+		"id": "E54EF989-1C99-A23A-4866-68240587D6A5",
+		"position": "Store Supervisor",
+		"department": "Purchase ",
+		"location": "Onitsha",
+		"status": 1,
+		"headcount": 2,
+		"minimumSalary": 60921,
+		"maximumSalary": 93329,
+		"applied": 200,
+		"dateCreated": "Apr 18th, 2022"
+	},
+	{
+		"id": "C2BC4D4D-2D38-BB45-1180-E51264E973A0",
+		"position": "CFO",
+		"department": "Finance ",
+		"location": "Okene",
+		"status": 0,
+		"headcount": 1,
+		"minimumSalary": 71295,
+		"maximumSalary": 77812,
+		"applied": 200,
+		"dateCreated": "Feb 11th, 2022"
+	},
+	{
+		"id": "692E6A85-9187-549D-0CFD-3D4D7A5FFCAA",
+		"position": "Sales Manager",
+		"department": "Marketing ",
+		"location": "Katsina",
+		"status": 3,
+		"headcount": 1,
+		"minimumSalary": 58182,
+		"maximumSalary": 94044,
+		"applied": 200,
+		"dateCreated": "Apr 11th, 2022"
+	},
+	{
+		"id": "9E19DDE5-3E87-6E35-277D-7231349D846A",
+		"position": "Sales Rep.",
+		"department": "Marketing ",
+		"location": "Modakeke",
+		"status": 3,
+		"headcount": 1,
+		"minimumSalary": 69573,
+		"maximumSalary": 96356,
+		"applied": 200,
+		"dateCreated": "Ma 18th, 2022"
+	}
+]

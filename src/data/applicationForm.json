@@ -1,0 +1,152 @@
+[
+    {
+        "sectionName": "Personal Information",
+        "description": "",
+        "fields": [
+            {
+                "name": "Name",
+                "model": "name",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    }
+                ]
+            },
+            {
+                "name": "Email",
+                "model": "email",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    }
+                ]
+            },
+            {
+                "name": "Headline",
+                "model": "headline",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    },
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            },
+            {
+                "name": "Phone",
+                "model": "phone",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    },
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            },
+            {
+                "name": "Address",                
+                "model": "address",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    },
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            },
+            {
+                "name": "Photo",             
+                "model": "photo",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    },
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "sectionName": "Profile",
+        "description": "",
+        "fields": [
+            {
+                "name": "Education",                             
+                "model": "education",
+                "options": [
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            },
+            {
+                "name": "Experience",             
+                "model": "experience",
+                "options": [
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            },
+            {
+                "name": "Summary",             
+                "model": "summary",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    },
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "sectionName": "Details",
+        "description": "",
+        "fields": [
+            {
+                "name": "Cover Letter",                             
+                "model": "coverLetter",
+                "options": [
+                    {
+                        "optionName": "Mandatory"
+                    },
+                    {
+                        "optionName": "Optional"
+                    },
+                    {
+                        "optionName": "Off"
+                    }
+                ]
+            }
+        ]
+    }
+]

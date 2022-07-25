@@ -1,0 +1,50 @@
+[
+	{
+		"departmentName": "Accounting Department",
+		"jobCount": 5,
+		"location": "Oyo",
+		"status": 1,
+		"dateCreated": "April 24th, 2020",
+		"id": "57F37ED4-DC2A-EC5A-63C7-C78DB35DC713"
+	},
+	{
+		"departmentName": "Human Resources Department",
+		"jobCount": 0,
+		"location": "Lagos",
+		"status": 1,
+		"dateCreated": "January 21st, 2019",
+		"id": "CE1D423C-116A-0C91-79AA-D8D7BCE60648"
+	},
+	{
+		"departmentName": "Operations Department",
+		"jobCount": 2,
+		"location": "Edo",
+		"status": 1,
+		"dateCreated": "August 7th, 2019",
+		"id": "03CD97D3-49E9-454D-2B2A-6580F1B6C115"
+	},
+	{
+		"departmentName": "Marketing Department",
+		"jobCount": 8,
+		"location": "Abeokuta",
+		"status": 0,
+		"dateCreated": "January 13th, 2020",
+		"id": "657248EC-01B3-D3F6-CF92-C45911AC84A9"
+	},
+	{
+		"departmentName": "Finance Department",
+		"jobCount": 9,
+		"location": "Lagos",
+		"status": 0,
+		"dateCreated": "November 2nd, 2020",
+		"id": "B8203BB7-021B-EBC3-9089-C54E3E4069DA"
+	},
+	{
+		"departmentName": "Purchase Department",
+		"jobCount": 9,
+		"location": "Ibadan",
+		"status": 1,
+		"dateCreated": "September 18th, 2020",
+		"id": "EDBFD433-2D56-776C-3A0C-B0832C78E9EC"
+	}
+]
