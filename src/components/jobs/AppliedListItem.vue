@@ -23,7 +23,7 @@
                   </div>
               </div>
           </div>
-          <!-- Right side -->
+          <!-- Right side  -->
           <div class="flex items-center space-x-4 pl-10 md:pl-0">
               <!-- <router-link class="inline-flex text-sm font-semibold mx-3 px-6 py-1 text-slate-800 mb-2 shadow-lg border-2 border-slate-800" :to="``">Details</router-link> -->
           </div>
