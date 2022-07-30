@@ -4,9 +4,11 @@ import JobDetailView from "../views/job/DetailView.vue";
 import AppliedListView from "../views/job/AppliedListView.vue";
 
 import SignupView from "../views/auth/SignupView.vue";
+import SigninView from "../views/auth/SigninView.vue";
 import SuccessView from "../views/auth/SuccessView.vue";
 import ConfirmationView from "../views/auth/ConfirmationView.vue";
-import SigninView from "../views/auth/SigninView.vue";
+import ResetPasswordView from "../views/auth/ResetPasswordView.vue";
+import ForgotPasswordView from "../views/auth/ForgotPasswordView.vue";
 
 import DashboardView from "../views/dashboard/DashboardView.vue";
 import ProfileView from "../views/profile/ProfileView.vue";
@@ -87,6 +89,23 @@ const router = createRouter({
     },
     {
       path: "/",
+      redirect: "reset-password",
+      component: () => import("../views/layouts/SaturnLayout.vue"),
+      children: [
+        {
+          name: "ResetPassword",
+          path: "reset-password",
+          meta: {
+            pageTitle: "Reset Password",
+            requiresAuth: false,
+          },
+          component: ResetPasswordView,
+          props: route => ({ query: { email: route.query.email, token: route.query.token} })
+        },
+      ],
+    },
+    {
+      path: "/",
       redirect: "signup-successful",
       component: () => import("../views/layouts/SaturnLayout.vue"),
       children: [
@@ -114,6 +133,22 @@ const router = createRouter({
             requiresAuth: false,
           },
           component: ConfirmationView,
+        },
+      ],
+    },
+    {
+      path: "/",
+      redirect: "forgot-password",
+      component: () => import("../views/layouts/SaturnLayout.vue"),
+      children: [
+        {
+          name: "ForgotPassword",
+          path: "forgot-password",
+          meta: {
+            pageTitle: "Forgot Password",
+            requiresAuth: false,
+          },
+          component: ForgotPasswordView,
         },
       ],
     },

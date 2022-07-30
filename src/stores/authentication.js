@@ -17,7 +17,6 @@ export const useAuthentication = defineStore({
             TokenService.saveToken(payload.access.token)
         },
         setUserInfo(payload) {
-            console.log("USERINFO", payload);
             this.userInfo = payload;
         },
         signOut() {

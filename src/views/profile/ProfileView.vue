@@ -1,15 +1,15 @@
 <template>
   <main class="flex-1 pb-8">
-    <div class="px-4 mx-auto py-12 max-w-7xl sm:px-6 lg:px-6">
+    <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-6">
       <div class="w-full">
-        <div class="lg:border-t lg:border-b lg:border-gray-200 mb-12">
+        <div class="mb-12 lg:border-t lg:border-b lg:border-gray-200">
           <nav
             class="mx-auto"
             aria-label="Progress"
           >
             <ol
               role="list"
-              class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none"
+              class="overflow-hidden rounded-md lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none"
             >
               <li
                 v-for="(tab, tabIdx) in tabs"
@@ -29,12 +29,12 @@
                     />
                     <span :class="[tabIdx !== 0 ? 'lg:pl-9' : '', 'px-6 py-5 flex items-start text-sm font-medium']">
                       <span class="flex-shrink-0">
-                        <span class="w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+                        <span class="flex items-center justify-center w-10 h-10 border-2 border-indigo-600 rounded-full">
                           <span class="text-indigo-600">{{ tab.id }}</span>
                         </span>
                       </span>
                       <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                        <span class="text-xs font-semibold text-indigo-600 tracking-wide uppercase">{{ tab.name }}</span>
+                        <span class="text-xs font-semibold tracking-wide text-indigo-600 uppercase">{{ tab.name }}</span>
                         <span class="text-sm font-medium text-gray-500">{{ tab.description }}</span>
                       </span>
                     </span>
@@ -50,12 +50,12 @@
                     />
                     <span :class="[tabIdx !== 0 ? 'lg:pl-9' : '', 'px-6 py-5 flex items-start text-sm font-medium']">
                       <span class="flex-shrink-0">
-                        <span class="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full">
+                        <span class="flex items-center justify-center w-10 h-10 border-2 border-gray-300 rounded-full">
                           <span class="text-gray-500">{{ tab.id }}</span>
                         </span>
                       </span>
                       <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                        <span class="text-xs font-semibold text-gray-500 tracking-wide uppercase">{{ tab.name }}</span>
+                        <span class="text-xs font-semibold tracking-wide text-gray-500 uppercase">{{ tab.name }}</span>
                         <span class="text-sm font-medium text-gray-500">{{ tab.description }}</span>
                       </span>
                     </span>
@@ -63,11 +63,11 @@
                   <template v-if="tabIdx !== 0">
                     <!-- Separator -->
                     <div
-                      class="hidden absolute top-0 left-0 w-3 inset-0 lg:block"
+                      class="absolute inset-0 top-0 left-0 hidden w-3 lg:block"
                       aria-hidden="true"
                     >
                       <svg
-                        class="h-full w-full text-gray-300"
+                        class="w-full h-full text-gray-300"
                         viewBox="0 0 12 82"
                         fill="none"
                         preserveAspectRatio="none"
@@ -97,13 +97,13 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                    <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
                       <div>
                         <label class="block text-sm font-medium text-gray-700"> Photo </label>
-                        <div class="mt-1 flex items-center">
-                          <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                        <div class="flex items-center mt-1">
+                          <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
                             <svg
-                              class="h-full w-full text-gray-300"
+                              class="w-full h-full text-gray-300"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                             >
@@ -112,7 +112,7 @@
                           </span>
                           <button
                             type="button"
-                            class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                           >Change</button>
                         </div>
                       </div>
@@ -127,14 +127,14 @@
                             <input
                               type="text"
                               v-model="candidate.firstname"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                             <div
                               class="text-red-600"
                               v-for="error of v$.firstname.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
 
@@ -146,14 +146,14 @@
                             <input
                               type="text"
                               v-model="candidate.middlename"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                             <div
                               class="text-red-600"
                               v-for="error of v$.middlename.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
 
@@ -165,14 +165,14 @@
                             <input
                               type="text"
                               v-model="candidate.lastname"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                             <div
                               class="text-red-600"
                               v-for="error of v$.lastname.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
 
@@ -184,7 +184,7 @@
                             <Datepicker
                               v-model="candidate.dob"
                               :format="format"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                             </Datepicker>
                             <div
@@ -192,7 +192,7 @@
                               v-for="error of v$.dob.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
 
@@ -218,7 +218,7 @@
                               v-for="error of v$.gender_id.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
 
@@ -230,14 +230,14 @@
                             <input
                               type="text"
                               v-model="candidate.phone"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                             <div
                               class="text-red-600"
                               v-for="error of v$.phone.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
 
@@ -249,7 +249,7 @@
                             <textarea
                               v-model="candidate.summary"
                               rows="5"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             ></textarea>
                           </div>
                         </div>
@@ -281,7 +281,7 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                    <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-3">
@@ -351,7 +351,7 @@
                             <input
                               type="text"
                               v-model="candidate.zip_code"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                           </div>
 
@@ -363,7 +363,7 @@
                             <textarea
                               rows="5"
                               v-model="candidate.address"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             ></textarea>
                           </div>
 
@@ -396,16 +396,29 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                    <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
-                          <!-- <div class="col-span-6 sm:col-span-6">
-                    <label
-                      for="country"
-                      class="block text-sm font-medium text-gray-700"
-                    >Skills</label>
-                    <TagInput @on-tags-changed="skillsChange" v-model="candidate.skills"></TagInput>
-                  </div> -->
+                          <div class="col-span-6 sm:col-span-6">
+                            <label
+                              for="headline"
+                              class="block text-sm font-medium text-gray-700"
+                            >Headline</label>
+                            <input
+                              type="text"
+                              v-model="candidate.headline"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            />
+                          </div>
+                          <div class="col-span-6 sm:col-span-6">
+                            <label
+                              for="country"
+                              class="block text-sm font-medium text-gray-700"
+                            >Skills</label>
+                            <TagInput
+                              @on-tags-changed="skillsChange"
+                            ></TagInput>
+                          </div>
 
                           <div class="col-span-6 sm:col-span-3">
                             <label
@@ -455,7 +468,7 @@
                               name="years_of_experience"
                               id="years_of_experience"
                               v-model="candidate.years_of_experience"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                           </div>
                         </div>
@@ -471,7 +484,7 @@
             <app-button
               @click="updateProfile"
               :processing="processing"
-              class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Update Profile
             </app-button>
           </div>
@@ -488,7 +501,7 @@
 
     </div>
   </main>
-  <div class="max-w-7xl mx-auto py-8">
+  <div class="py-8 mx-auto max-w-7xl">
 
   </div>
 </template>
@@ -506,6 +519,7 @@ import EducationView from "./EducationView.vue";
 import ExperienceView from "./ExperienceView.vue";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import { FormatDate } from "../../util/Formatter"
 
 const tabs = [
   {
@@ -542,7 +556,7 @@ const {
 const toast = useToast();
 const regions = ref([]);
 const cities = ref([]);
-// const skills = ref([]);
+const skills = ref([]);
 
 const processing = ref(false);
 
@@ -605,9 +619,9 @@ const v$ = useVuelidate(rules, candidate);
 
 const { setUserInfo } = useAuthentication();
 
-// function skillsChange(items) {
-//     skills.value = items;
-// }
+function skillsChange(items) {
+    skills.value = items;
+}
 
 async function updateProfile() {
   const valid = await v$.value.$validate();
@@ -616,7 +630,12 @@ async function updateProfile() {
     return;
   }
   if (valid) {
+    candidate.value.dob = FormatDate(candidate.value.dob, "YYYY-MM-DD");
     processing.value = true;
+    if (skills.value.length > 0) {
+      candidate.value.skills = skills.value.join();
+    }
+    
     ProfileService.updateProfile(candidate.value)
       .then((res) => {
         const { data } = res.data;
@@ -643,7 +662,7 @@ function setProfileDetails() {
   candidate.value.lastname = userInfo.value.lastname;
   candidate.value.dob = userInfo.value.dob;
   candidate.value.phone = userInfo.value.phone;
-  candidate.value.headline = userInfo.value.headline;
+  candidate.value.headline = userInfo.value.headline || "";
   candidate.value.gender_id = userInfo.value.gender_id;
   candidate.value.country_id = userInfo.value.city != null ? userInfo.value.city.region.country.id : null;
   candidate.value.region_id = userInfo.value.city != null ? userInfo.value.city.region.id : null;
@@ -651,12 +670,12 @@ function setProfileDetails() {
   candidate.value.zip_code = userInfo.value.zip_code;
   candidate.value.address = userInfo.value.address;
   candidate.value.summary = userInfo.value.summary;
-  candidate.value.skills = userInfo.value.skills;
+  candidate.value.skills = userInfo.value.skills !== null ? userInfo.value.skills.split(',') : "";
   candidate.value.industry_id = userInfo.value.industry != null ? userInfo.value.industry.id : null;
   candidate.value.job_function_id = userInfo.value.job_function != null ? userInfo.value.job_function.id : null;
   candidate.value.years_of_experience = userInfo.value.years_of_experience;
+  skills.value = candidate.value.skills
 }
-
 
 onMounted(() => {
   setProfileDetails();

@@ -21,7 +21,7 @@
           <div class="fixed inset-0 bg-gray-600 bg-opacity-75" />
         </TransitionChild>
 
-        <div class="fixed inset-0 flex z-40">
+        <div class="fixed inset-0 z-40 flex">
           <TransitionChild
             as="template"
             enter="transition ease-in-out duration-300 transform"
@@ -31,7 +31,7 @@
             leave-from="translate-x-0"
             leave-to="-translate-x-full"
           >
-            <DialogPanel class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-indigo-700">
+            <DialogPanel class="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 bg-indigo-700">
               <TransitionChild
                 as="template"
                 enter="ease-in-out duration-300"
@@ -41,29 +41,29 @@
                 leave-from="opacity-100"
                 leave-to="opacity-0"
               >
-                <div class="absolute top-0 right-0 -mr-12 pt-2">
+                <div class="absolute top-0 right-0 pt-2 -mr-12">
                   <button
                     type="button"
-                    class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    class="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     @click="sidebarOpen = false"
                   >
                     <span class="sr-only">Close sidebar</span>
                     <XIcon
-                      class="h-6 w-6 text-white"
+                      class="w-6 h-6 text-white"
                       aria-hidden="true"
                     />
                   </button>
                 </div>
               </TransitionChild>
-              <div class="flex-shrink-0 flex items-center px-4">
+              <div class="flex items-center flex-shrink-0 px-4">
                 <img
-                  class="h-8 w-auto"
+                  class="w-auto h-8"
                   src="../../assets/logo.svg"
                   alt="Upitr logo"
                 />
               </div>
               <nav
-                class="mt-5 flex-shrink-0 h-full divide-y divide-indigo-800 overflow-y-auto"
+                class="flex-shrink-0 h-full mt-5 overflow-y-auto divide-y divide-indigo-800"
                 aria-label="Sidebar"
               >
                 <div class="px-2 space-y-1">
@@ -76,7 +76,7 @@
                   >
                     <component
                       :is="item.icon"
-                      class="mr-4 flex-shrink-0 h-6 w-6 text-indigo-200"
+                      class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-200"
                       aria-hidden="true"
                     />
                     {{ item.name }}
@@ -96,27 +96,27 @@
     </TransitionRoot>
 
     <!-- Static sidebar for desktop -->
-    <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 bg-indigo-700">
+    <div class="hidden bg-indigo-700 lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
       <!-- Sidebar component, swap this element with another sidebar if you like -->
-      <div class="flex-1 flex-col flex-grow pt-3 pb-4 overflow-y-auto">
-        <div class="flex flex-1 items-center flex-shrink-0 px-4 mb-12">
+      <div class="flex-col flex-1 flex-grow pt-3 pb-4 overflow-y-auto">
+        <div class="flex items-center flex-1 flex-shrink-0 px-4 mb-12">
           <svg
-            class="shrink-0 h-8 w-8 text-indigo-300"
+            class="w-8 h-8 text-indigo-300 shrink-0"
             viewBox="0 0 24 24"
           >
             <path
-              class="fill-current text-indigo-200"
+              class="text-indigo-200 fill-current"
               d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
             ></path>
             <path
-              class="fill-current text-indigo-400"
+              class="text-indigo-400 fill-current"
               d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
             ></path>
           </svg>
-          <h2 class="text-white text-3xl font-medium ml-2">recruit<span class="text-indigo-200 font-medium text-3xl">r</span></h2>
+          <h2 class="ml-2 text-3xl font-medium text-white">recruit<span class="text-3xl font-medium text-indigo-200">r</span></h2>
         </div>
         <nav
-          class="mt-5 flex-1 flex flex-col divide-y divide-indigo-800 overflow-y-auto"
+          class="flex flex-col flex-1 mt-5 overflow-y-auto divide-y divide-indigo-800"
           aria-label="Sidebar"
         >
           <div class="px-2 space-y-1">
@@ -129,7 +129,7 @@
             >
               <component
                 :is="item.icon"
-                class="mr-4 flex-shrink-0 h-6 w-6 text-indigo-200"
+                class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-200"
                 aria-hidden="true"
               />
               {{ item.name }}
@@ -138,58 +138,52 @@
         </nav>
       </div>
 
-      <div class="flex-shrink-0 flex border-t border-indigo-800 p-4">
+      <div class="flex flex-shrink-0 p-4 border-t border-indigo-800">
         <a
           href="#"
-          class="flex-shrink-0 w-full group block"
+          class="flex-shrink-0 block w-full group"
         >
           <div class="flex items-center">
             <div>
-              <UserCircleIcon class="w-12 h-12 rounded-full text-white"></UserCircleIcon>
+              <UserCircleIcon class="w-12 h-12 text-white rounded-full"></UserCircleIcon>
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-white group-hover:text-gray-300">{{ userInfo.firstname }} {{ userInfo.lastname }}</p>
-              <p class="text-xs font-medium text-white group-hover:text-gray-300">View profile</p>
+              <a href="/account/profile" class="text-xs font-medium text-white group-hover:text-gray-300">View profile</a>
             </div>
           </div>
         </a>
       </div>
     </div>
 
-    <div class="lg:pl-64 flex flex-col flex-1">
-      <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
+    <div class="flex flex-col flex-1 lg:pl-64">
+      <div class="relative z-10 flex flex-shrink-0 h-16 bg-white border-b border-gray-200 lg:border-none">
         <button
           type="button"
-          class="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden"
+          class="px-4 text-gray-400 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden"
           @click="sidebarOpen = true"
         >
           <span class="sr-only">Open sidebar</span>
           <MenuAlt1Icon
-            class="h-6 w-6"
+            class="w-6 h-6"
             aria-hidden="true"
           />
         </button>
         <!-- Search bar -->
-        <div class="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-7xl lg:mx-auto lg:px-8">
-          <div class="flex-1 flex items-center">
-            <h1 class="
-                      text-2xl
-                      font-bold
-                      leading-7
-                      text-gray-900
-                      sm:leading-9 sm:truncate
-                    ">
+        <div class="flex justify-between flex-1 px-4 sm:px-6 lg:max-w-7xl lg:mx-auto lg:px-8">
+          <div class="flex items-center flex-1">
+            <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
               {{appStore.pageTitle}}
             </h1>
           </div>
-          <div class="ml-4 flex items-center md:ml-6">
+          <div class="flex items-center ml-4 md:ml-6">
             <button
               type="button"
-              class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
             >
               <span class="sr-only">View notifications</span>
               <BellIcon
-                class="h-6 w-6"
+                class="w-6 h-6"
                 aria-hidden="true"
               />
             </button>
@@ -197,27 +191,27 @@
             <!-- Profile dropdown -->
             <Menu
               as="div"
-              class="ml-3 relative"
+              class="relative ml-3"
             >
               <div>
-                <MenuButton class="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
-                  <UserCircleIcon class="w-10 h-10 rounded-full text-indigo-500"></UserCircleIcon>
-                  <span class="hidden ml-3 text-gray-700 text-sm font-medium lg:block">{{ userInfo.firstname }} {{ userInfo.lastname }}</span>
+                <MenuButton class="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
+                  <UserCircleIcon class="w-10 h-10 text-indigo-500 rounded-full"></UserCircleIcon>
+                  <span class="hidden ml-3 text-sm font-medium text-gray-700 lg:block">{{ userInfo.firstname }} {{ userInfo.lastname }}</span>
                   <ChevronDownIcon
-                    class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block"
+                    class="flex-shrink-0 hidden w-5 h-5 ml-1 text-gray-400 lg:block"
                     aria-hidden="true"
                   />
                 </MenuButton>
               </div>
               <transition
-                enter-active-class="transition ease-out duration-100"
-                enter-from-class="transform opacity-0 scale-95"
-                enter-to-class="transform opacity-100 scale-100"
-                leave-active-class="transition ease-in duration-75"
-                leave-from-class="transform opacity-100 scale-100"
-                leave-to-class="transform opacity-0 scale-95"
+                enter-active-class="transition duration-100 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
               >
-                <MenuItems class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <MenuItems class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <MenuItem v-slot="{ active }">
                   <a
                     href="/account/profile"
