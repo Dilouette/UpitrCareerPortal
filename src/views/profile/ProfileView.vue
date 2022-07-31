@@ -3,10 +3,7 @@
     <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-6">
       <div class="w-full">
         <div class="mb-12 lg:border-t lg:border-b lg:border-gray-200">
-          <nav
-            class="mx-auto"
-            aria-label="Progress"
-          >
+          <nav class="mx-auto" aria-label="Progress">
             <ol
               role="list"
               class="overflow-hidden rounded-md lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none"
@@ -17,7 +14,13 @@
                 @click="changeTab(tabIdx)"
                 class="relative overflow-hidden lg:flex-1"
               >
-                <div :class="[tabIdx === 0 ? 'border-b-0 rounded-t-md' : '', tabIdx === tabs.length - 1 ? 'border-t-0 rounded-b-md' : '', 'border border-gray-200 overflow-hidden lg:border-0']">
+                <div
+                  :class="[
+                    tabIdx === 0 ? 'border-b-0 rounded-t-md' : '',
+                    tabIdx === tabs.length - 1 ? 'border-t-0 rounded-b-md' : '',
+                    'border border-gray-200 overflow-hidden lg:border-0',
+                  ]"
+                >
                   <a
                     v-if="tabIdx == tabIndex"
                     :href="tab.href"
@@ -27,36 +30,56 @@
                       class="absolute top-0 left-0 w-1 h-full bg-indigo-600 lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
                       aria-hidden="true"
                     />
-                    <span :class="[tabIdx !== 0 ? 'lg:pl-9' : '', 'px-6 py-5 flex items-start text-sm font-medium']">
+                    <span
+                      :class="[
+                        tabIdx !== 0 ? 'lg:pl-9' : '',
+                        'px-6 py-5 flex items-start text-sm font-medium',
+                      ]"
+                    >
                       <span class="flex-shrink-0">
-                        <span class="flex items-center justify-center w-10 h-10 border-2 border-indigo-600 rounded-full">
+                        <span
+                          class="flex items-center justify-center w-10 h-10 border-2 border-indigo-600 rounded-full"
+                        >
                           <span class="text-indigo-600">{{ tab.id }}</span>
                         </span>
                       </span>
                       <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                        <span class="text-xs font-semibold tracking-wide text-indigo-600 uppercase">{{ tab.name }}</span>
-                        <span class="text-sm font-medium text-gray-500">{{ tab.description }}</span>
+                        <span
+                          class="text-xs font-semibold tracking-wide text-indigo-600 uppercase"
+                          >{{ tab.name }}</span
+                        >
+                        <span class="text-sm font-medium text-gray-500">{{
+                          tab.description
+                        }}</span>
                       </span>
                     </span>
                   </a>
-                  <a
-                    v-else
-                    :href="tab.href"
-                    class="group"
-                  >
+                  <a v-else :href="tab.href" class="group">
                     <span
                       class="absolute top-0 left-0 w-1 h-full bg-transparent group-hover:bg-gray-200 lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
                       aria-hidden="true"
                     />
-                    <span :class="[tabIdx !== 0 ? 'lg:pl-9' : '', 'px-6 py-5 flex items-start text-sm font-medium']">
+                    <span
+                      :class="[
+                        tabIdx !== 0 ? 'lg:pl-9' : '',
+                        'px-6 py-5 flex items-start text-sm font-medium',
+                      ]"
+                    >
                       <span class="flex-shrink-0">
-                        <span class="flex items-center justify-center w-10 h-10 border-2 border-gray-300 rounded-full">
+                        <span
+                          class="flex items-center justify-center w-10 h-10 border-2 border-gray-300 rounded-full"
+                        >
                           <span class="text-gray-500">{{ tab.id }}</span>
                         </span>
                       </span>
                       <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                        <span class="text-xs font-semibold tracking-wide text-gray-500 uppercase">{{ tab.name }}</span>
-                        <span class="text-sm font-medium text-gray-500">{{ tab.description }}</span>
+                        <span
+                          class="text-xs font-semibold tracking-wide text-gray-500 uppercase"
+                          >{{ tab.name }}</span
+                        >
+                        <span class="text-sm font-medium text-gray-500">{{
+                          tab.description
+                        }}</span>
                       </span>
                     </span>
                   </a>
@@ -90,8 +113,12 @@
             <div class="md:grid md:grid-cols-3 md:gap-6">
               <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
-                  <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-                  <p class="mt-1 text-sm text-gray-600">Please use accurate information.</p>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">
+                    Personal Information
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-600">
+                    Please use accurate information.
+                  </p>
                 </div>
               </div>
               <div class="mt-5 md:mt-0 md:col-span-2">
@@ -99,21 +126,29 @@
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
                       <div>
-                        <label class="block text-sm font-medium text-gray-700"> Photo </label>
+                        <label class="block text-sm font-medium text-gray-700">
+                          Photo
+                        </label>
                         <div class="flex items-center mt-1">
-                          <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
+                          <span
+                            class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full"
+                          >
                             <svg
                               class="w-full h-full text-gray-300"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                             >
-                              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                              <path
+                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
+                              />
                             </svg>
                           </span>
                           <button
                             type="button"
                             class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          >Change</button>
+                          >
+                            Change
+                          </button>
                         </div>
                       </div>
 
@@ -123,7 +158,8 @@
                             <label
                               for="first-name"
                               class="block text-sm font-medium text-gray-700"
-                            >First name</label>
+                              >First name</label
+                            >
                             <input
                               type="text"
                               v-model="candidate.firstname"
@@ -134,7 +170,9 @@
                               v-for="error of v$.firstname.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-xs text-red-600">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">
+                                {{ error.$message }}
+                              </div>
                             </div>
                           </div>
 
@@ -142,7 +180,8 @@
                             <label
                               for="last-name"
                               class="block text-sm font-medium text-gray-700"
-                            >Middle name</label>
+                              >Middle name</label
+                            >
                             <input
                               type="text"
                               v-model="candidate.middlename"
@@ -153,7 +192,9 @@
                               v-for="error of v$.middlename.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-xs text-red-600">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">
+                                {{ error.$message }}
+                              </div>
                             </div>
                           </div>
 
@@ -161,7 +202,8 @@
                             <label
                               for="last-name"
                               class="block text-sm font-medium text-gray-700"
-                            >Last name</label>
+                              >Last name</label
+                            >
                             <input
                               type="text"
                               v-model="candidate.lastname"
@@ -172,7 +214,9 @@
                               v-for="error of v$.lastname.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-xs text-red-600">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">
+                                {{ error.$message }}
+                              </div>
                             </div>
                           </div>
 
@@ -180,7 +224,8 @@
                             <label
                               for="dob"
                               class="block text-sm font-medium text-gray-700"
-                            >Date of birth</label>
+                              >Date of birth</label
+                            >
                             <Datepicker
                               v-model="candidate.dob"
                               :format="format"
@@ -192,7 +237,9 @@
                               v-for="error of v$.dob.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-xs text-red-600">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">
+                                {{ error.$message }}
+                              </div>
                             </div>
                           </div>
 
@@ -200,7 +247,8 @@
                             <label
                               for="email-address"
                               class="block text-sm font-medium text-gray-700"
-                            >Gender</label>
+                              >Gender</label
+                            >
                             <MultiSelect
                               class="mt-1 border border-gray-300 rounded-md"
                               searchable
@@ -218,7 +266,9 @@
                               v-for="error of v$.gender_id.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-xs text-red-600">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">
+                                {{ error.$message }}
+                              </div>
                             </div>
                           </div>
 
@@ -226,7 +276,8 @@
                             <label
                               for="last-name"
                               class="block text-sm font-medium text-gray-700"
-                            >Phone no</label>
+                              >Phone no</label
+                            >
                             <input
                               type="text"
                               v-model="candidate.phone"
@@ -237,7 +288,9 @@
                               v-for="error of v$.phone.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-xs text-red-600">{{ error.$message }}</div>
+                              <div class="text-xs text-red-600">
+                                {{ error.$message }}
+                              </div>
                             </div>
                           </div>
 
@@ -245,7 +298,8 @@
                             <label
                               for="street-address"
                               class="block text-sm font-medium text-gray-700"
-                            >Summary</label>
+                              >Summary</label
+                            >
                             <textarea
                               v-model="candidate.summary"
                               rows="5"
@@ -261,10 +315,7 @@
             </div>
           </div>
 
-          <div
-            class="hidden sm:block"
-            aria-hidden="true"
-          >
+          <div class="hidden sm:block" aria-hidden="true">
             <div class="py-5">
               <div class="border-t border-gray-200"></div>
             </div>
@@ -274,8 +325,12 @@
             <div class="md:grid md:grid-cols-3 md:gap-6">
               <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
-                  <h3 class="text-lg font-medium leading-6 text-gray-900">Location Information</h3>
-                  <p class="mt-1 text-sm text-gray-500">Please enter your current address details accurately</p>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">
+                    Location Information
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">
+                    Please enter your current address details accurately
+                  </p>
                 </div>
               </div>
               <div class="mt-5 md:mt-0 md:col-span-2">
@@ -288,7 +343,8 @@
                             <label
                               for="country"
                               class="block text-sm font-medium text-gray-700"
-                            >Country</label>
+                              >Country</label
+                            >
                             <MultiSelect
                               class="mt-1"
                               searchable
@@ -307,7 +363,8 @@
                             <label
                               for="region"
                               class="block text-sm font-medium text-gray-700"
-                            >State</label>
+                              >State</label
+                            >
                             <MultiSelect
                               class="mt-1"
                               searchable
@@ -327,7 +384,8 @@
                             <label
                               for="city"
                               class="block text-sm font-medium text-gray-700"
-                            >City</label>
+                              >City</label
+                            >
                             <MultiSelect
                               class="mt-1"
                               searchable
@@ -347,7 +405,8 @@
                             <label
                               for="postal-code"
                               class="block text-sm font-medium text-gray-700"
-                            >Postal code</label>
+                              >Postal code</label
+                            >
                             <input
                               type="text"
                               v-model="candidate.zip_code"
@@ -359,14 +418,14 @@
                             <label
                               for="street-address"
                               class="block text-sm font-medium text-gray-700"
-                            >Street address</label>
+                              >Street address</label
+                            >
                             <textarea
                               rows="5"
                               v-model="candidate.address"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             ></textarea>
                           </div>
-
                         </div>
                       </div>
                     </div>
@@ -376,10 +435,7 @@
             </div>
           </div>
 
-          <div
-            class="hidden sm:block"
-            aria-hidden="true"
-          >
+          <div class="hidden sm:block" aria-hidden="true">
             <div class="py-5">
               <div class="border-t border-gray-200"></div>
             </div>
@@ -389,8 +445,12 @@
             <div class="md:grid md:grid-cols-3 md:gap-6">
               <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
-                  <h3 class="text-lg font-medium leading-6 text-gray-900">Current Job Information</h3>
-                  <p class="mt-1 text-sm text-gray-500">Please enter your current job information accurately.</p>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">
+                    Current Job Information
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">
+                    Please enter your current job information accurately.
+                  </p>
                 </div>
               </div>
               <div class="mt-5 md:mt-0 md:col-span-2">
@@ -403,7 +463,8 @@
                             <label
                               for="headline"
                               class="block text-sm font-medium text-gray-700"
-                            >Headline</label>
+                              >Headline</label
+                            >
                             <input
                               type="text"
                               v-model="candidate.headline"
@@ -414,17 +475,29 @@
                             <label
                               for="country"
                               class="block text-sm font-medium text-gray-700"
-                            >Skills</label>
-                            <TagInput
+                              >Skills</label
+                            >
+                            <!-- <TagInput
                               @on-tags-changed="skillsChange"
-                            ></TagInput>
+                              :tags="candidate.skills"
+                            ></TagInput> -->
+                            <MultiSelect
+                              searchable
+                              mode="tags"
+                              v-model="skills"
+                              placeholder="add a skill"
+                              label="name"
+                              :options="skills"
+                              :create-option="true"
+                            ></MultiSelect>
                           </div>
 
                           <div class="col-span-6 sm:col-span-3">
                             <label
                               for="industries"
                               class="block text-sm font-medium text-gray-700"
-                            >Current Industry</label>
+                              >Current Industry</label
+                            >
                             <MultiSelect
                               class="mt-1"
                               searchable
@@ -443,7 +516,8 @@
                             <label
                               for="job_functions"
                               class="block text-sm font-medium text-gray-700"
-                            >Current Job Function</label>
+                              >Current Job Function</label
+                            >
                             <MultiSelect
                               class="mt-1"
                               searchable
@@ -462,7 +536,8 @@
                             <label
                               for="postal-code"
                               class="block text-sm font-medium text-gray-700"
-                            >Years Of Experience</label>
+                              >Years Of Experience</label
+                            >
                             <input
                               type="number"
                               name="years_of_experience"
@@ -485,7 +560,8 @@
               @click="updateProfile"
               :processing="processing"
               class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >Update Profile
+            >
+              Update Profile
             </app-button>
           </div>
         </div>
@@ -498,12 +574,9 @@
           <experience-view></experience-view>
         </div>
       </div>
-
     </div>
   </main>
-  <div class="py-8 mx-auto max-w-7xl">
-
-  </div>
+  <div class="py-8 mx-auto max-w-7xl"></div>
 </template>
 <script setup>
 import { ref, onMounted, watch } from "vue";
@@ -519,7 +592,7 @@ import EducationView from "./EducationView.vue";
 import ExperienceView from "./ExperienceView.vue";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-import { FormatDate } from "../../util/Formatter"
+import { FormatDate } from "../../util/Formatter";
 
 const tabs = [
   {
@@ -547,11 +620,7 @@ const tabs = [
 
 var tabIndex = ref(0);
 
-const {
-  countries,
-  industries,
-  jobFunctions,
-} = storeToRefs(useMiscellaneous());
+const { countries, industries, jobFunctions } = storeToRefs(useMiscellaneous());
 
 const toast = useToast();
 const regions = ref([]);
@@ -559,7 +628,6 @@ const cities = ref([]);
 const skills = ref([]);
 
 const processing = ref(false);
-
 const fetchingRegions = ref(false);
 const fetchingCities = ref(false);
 
@@ -617,11 +685,7 @@ const { userInfo } = storeToRefs(useAuthentication());
 
 const v$ = useVuelidate(rules, candidate);
 
-const { setUserInfo } = useAuthentication();
-
-function skillsChange(items) {
-    skills.value = items;
-}
+const { fetchUserProile } = useAuthentication();
 
 async function updateProfile() {
   const valid = await v$.value.$validate();
@@ -635,11 +699,12 @@ async function updateProfile() {
     if (skills.value.length > 0) {
       candidate.value.skills = skills.value.join();
     }
-    
+
     ProfileService.updateProfile(candidate.value)
-      .then((res) => {
-        const { data } = res.data;
-        setUserInfo(data);
+      .then(() => {
+        // const { data } = res.data;
+        // setUserInfo(candidate.value);
+        fetchUserProile();
         toast.success("Profile successfully updated");
       })
       .catch((err) => {
@@ -664,15 +729,21 @@ function setProfileDetails() {
   candidate.value.phone = userInfo.value.phone;
   candidate.value.headline = userInfo.value.headline || "";
   candidate.value.gender_id = userInfo.value.gender_id;
-  candidate.value.country_id = userInfo.value.city != null ? userInfo.value.city.region.country.id : null;
-  candidate.value.region_id = userInfo.value.city != null ? userInfo.value.city.region.id : null;
-  candidate.value.city_id = userInfo.value.city != null ? userInfo.value.city.id : null;
+  candidate.value.country_id =
+    userInfo.value.city != null ? userInfo.value.city.region.country.id : null;
+  candidate.value.region_id =
+    userInfo.value.city != null ? userInfo.value.city.region.id : null;
+  candidate.value.city_id =
+    userInfo.value.city != null ? userInfo.value.city.id : null;
   candidate.value.zip_code = userInfo.value.zip_code;
   candidate.value.address = userInfo.value.address;
   candidate.value.summary = userInfo.value.summary;
-  candidate.value.skills = userInfo.value.skills !== null ? userInfo.value.skills.split(',') : "";
-  candidate.value.industry_id = userInfo.value.industry != null ? userInfo.value.industry.id : null;
-  candidate.value.job_function_id = userInfo.value.job_function != null ? userInfo.value.job_function.id : null;
+  candidate.value.skills =
+    userInfo.value.skills !== null ? userInfo.value.skills.split(",") : [];
+  candidate.value.industry_id =
+    userInfo.value.industry != null ? userInfo.value.industry.id : null;
+  candidate.value.job_function_id =
+    userInfo.value.job_function != null ? userInfo.value.job_function.id : null;
   candidate.value.years_of_experience = userInfo.value.years_of_experience;
   skills.value = candidate.value.skills
 }

@@ -131,9 +131,11 @@ export default {
     tags: {
       deep: true,
       immediate: true,
-      handler(tags) {
-        this.innerTags = [...tags];
-      },
+      handler: 'updateTags',
+      // handler(tags) {
+      //   this.innerTags = [...tags];
+      //   this.tagChange();
+      // },
     },
     newTag() {
       if (this.newTag.length > 50) {
@@ -143,6 +145,12 @@ export default {
     },
   },
   methods: {
+    updateTags() {
+      this.innerTags = [...this.tags];
+      this.newTag = "";
+      this.$emit("update:modelValue", "");
+      this.tagChange();
+    },
     onInputChange(event) {
       this.$emit("update:modelValue", event.target.value);
       this.$refs.inputTag.className = "tags-new-tag";
@@ -241,7 +249,6 @@ export default {
     },
     tagChange() {
       this.$emit("on-tags-changed", this.innerTags);
-      // this.$emit("update:modelValue", this.innerTags);
     },
   },
 };

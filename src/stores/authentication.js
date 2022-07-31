@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import TokenService from "../service/token.service";
+import ProfileService from "../service/profile.service";
 
 export const useAuthentication = defineStore({
     id: "authentication",
@@ -14,7 +15,13 @@ export const useAuthentication = defineStore({
             this.userInfo = payload.user;
             this.tokenInfo = payload.access;
             this.isAuthenticated = true;
-            TokenService.saveToken(payload.access.token)
+            TokenService.saveToken(payload.access.token);
+        },
+        fetchUserProile() {
+            ProfileService.getProfile().then(response => {
+                const { data } = response.data;
+                this.userInfo = data;
+            })
         },
         setUserInfo(payload) {
             this.userInfo = payload;

@@ -18,6 +18,22 @@ const ProfileService = {
         });
     });
   },
+  getProfile() {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/${basePath}`)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          if (error.response) {
+            reject(error.response);
+          } else {
+            reject(new Error(error));
+          }
+        });
+    });
+  },
 };
 
 export default ProfileService;

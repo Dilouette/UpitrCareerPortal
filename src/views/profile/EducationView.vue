@@ -3,7 +3,7 @@
     <div class="flex justify-end mb-6">
       <span
         @click="initAdd"
-        class="inline-flex cursor-pointer justify-center text-sm font-bold text-indigo-600"
+        class="inline-flex justify-center text-sm font-bold text-indigo-600 cursor-pointer"
       > + Add Education
       </span>
     </div>
@@ -14,22 +14,22 @@
       <li
         v-for="education in userEducation"
         :key="education.id"
-        class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200"
+        class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow"
       >
-        <div class="w-full flex items-center justify-between p-6 space-x-6">
+        <div class="flex items-center justify-between w-full p-6 space-x-6">
           <div class="flex-1 truncate">
-            <h3 class="text-gray-900 text-sm font-medium truncate">{{ education.institution }}</h3>
-            <p class="mt-1 text-gray-500 text-sm truncate">{{ education.education_level.name }}</p>
+            <h3 class="text-sm font-medium text-gray-900 truncate">{{ education.institution }}</h3>
+            <p class="mt-1 text-sm text-gray-500 truncate">{{ education.education_level.name }}</p>
             <div class="flex items-center space-x-3">
-              <p class="mt-1 text-gray-500 text-sm truncate">{{ education.field }}</p>
+              <p class="mt-1 text-sm text-gray-500 truncate">{{ education.field }}</p>
               <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ education.degree_classification }}</span>
             </div>
 
-            <p class="mt-1 text-gray-500 text-sm truncate"><i class="fa-regular fa-calendar-check mr-1"></i>{{FormatMonthYear(education.start_date)}} - {{FormatMonthYear(education.end_date)}}</p>
+            <p class="mt-1 text-sm text-gray-500 truncate"><i class="mr-1 fa-regular fa-calendar-check"></i>{{FormatMonthYear(education.start_date)}} - {{FormatMonthYear(education.end_date)}}</p>
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-10 h-10 rounded-full flex-shrink-0 bi bi-mortarboard"
+            class="flex-shrink-0 w-10 h-10 rounded-full bi bi-mortarboard"
             fill="currentColor"
             viewBox="0 0 16 16"
           >
@@ -38,11 +38,11 @@
           </svg>
         </div>
         <div>
-          <div class="-mt-px flex divide-x divide-gray-200">
-            <div class="w-0 flex-1 flex">
+          <div class="flex -mt-px divide-x divide-gray-200">
+            <div class="flex flex-1 w-0">
               <a
                 @click="initEdit(education)"
-                class="cursor-pointer relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+                class="relative inline-flex items-center justify-center flex-1 w-0 py-4 -mr-px text-sm font-medium text-gray-700 border border-transparent rounded-bl-lg cursor-pointer hover:text-gray-500"
               >
                 <PencilAltIcon
                   class="w-5 h-5 text-gray-400"
@@ -51,10 +51,10 @@
                 <span class="ml-3">Edit</span>
               </a>
             </div>
-            <div class="-ml-px w-0 flex-1 flex">
+            <div class="flex flex-1 w-0 -ml-px">
               <a
                 @click="initDelete(education.id)"
-                class="cursor-pointer relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+                class="relative inline-flex items-center justify-center flex-1 w-0 py-4 text-sm font-medium text-gray-700 border border-transparent rounded-br-lg cursor-pointer hover:text-gray-500"
               >
                 <TrashIcon
                   class="w-5 h-5 text-red-400"
@@ -73,18 +73,18 @@
     v-if="!fetching && userEducation.length == 0"
     @click="initAdd"
     type="button"
-    class="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    class="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="mx-auto h-12 w-12 text-gray-400 bi bi-mortarboard"
+      class="w-12 h-12 mx-auto text-gray-400 bi bi-mortarboard"
       fill="currentColor"
       viewBox="0 0 16 16"
     >
       <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z" />
       <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z" />
     </svg>
-    <span class="mt-2 block text-sm font-medium text-gray-900"> Add Education Details </span>
+    <span class="block mt-2 text-sm font-medium text-gray-900"> Add Education Details </span>
   </button>
 
   <TransitionRoot
@@ -105,11 +105,11 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
       </TransitionChild>
 
-      <div class="fixed z-10 inset-0 overflow-y-auto">
-        <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
           <TransitionChild
             as="template"
             enter="ease-out duration-300"
@@ -119,15 +119,15 @@
             leave-from="opacity-100 translate-y-0 sm:scale-100"
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <DialogPanel class="relative bg-white rounded-lg px-4 pt-5 pb-6 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-3xl sm:w-full sm:p-6">
+            <DialogPanel class="relative px-4 pt-5 pb-6 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-3xl sm:w-full sm:p-6">
               <div class="w-100">
-                <div class="mt-3 text-center sm:mt-0  sm:text-left">
+                <div class="mt-3 text-center sm:mt-0 sm:text-left">
                   <DialogTitle
                     as="h3"
-                    class="text-lg px-6 leading-6 font-medium text-gray-900"
+                    class="px-6 text-lg font-medium leading-6 text-gray-900"
                   > Add New Education Details </DialogTitle>
                   <div class="mt-2">
-                    <div class="py-5 bg-white space-y-6 sm:p-6">
+                    <div class="py-5 space-y-6 bg-white sm:p-6">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-6">
@@ -138,14 +138,14 @@
                             <input
                               type="text"
                               v-model="education.institution"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                             <div
                               class="text-red-600"
                               v-for="error of v$.institution.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs font-bold">{{ error.$message }}</div>
+                              <div class="text-xs font-bold text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
                           <div class="col-span-6 sm:col-span-6">
@@ -170,7 +170,7 @@
                               v-for="error of v$.education_level_id.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs font-bold">{{ error.$message }}</div>
+                              <div class="text-xs font-bold text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
                           <div class="col-span-6 sm:col-span-6">
@@ -181,7 +181,7 @@
                             <input
                               type="text"
                               v-model="education.field"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                           </div>
                           <div
@@ -189,7 +189,7 @@
                             v-for="error of v$.field.$errors"
                             :key="error.$uid"
                           >
-                            <div class="text-red-600 text-xs font-bold">{{ error.$message }}</div>
+                            <div class="text-xs font-bold text-red-600">{{ error.$message }}</div>
                           </div>
                           <div class="col-span-6 sm:col-span-6">
                             <label
@@ -213,7 +213,7 @@
                               v-for="error of v$.degree_classification_id.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs font-bold">{{ error.$message }}</div>
+                              <div class="text-xs font-bold text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
                           <div class="col-span-6 sm:col-span-3">
@@ -224,7 +224,7 @@
                             <Datepicker
                               v-model="education.start_date"
                               :format="format"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                             </Datepicker>
                             <div
@@ -232,7 +232,7 @@
                               v-for="error of v$.start_date.$errors"
                               :key="error.$uid"
                             >
-                              <div class="text-red-600 text-xs font-bold">{{ error.$message }}</div>
+                              <div class="text-xs font-bold text-red-600">{{ error.$message }}</div>
                             </div>
                           </div>
                           <div class="col-span-6 sm:col-span-3">
@@ -243,7 +243,7 @@
                             <Datepicker
                               v-model="education.end_date"
                               :format="format"
-                              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                             </Datepicker>
                           </div>
@@ -253,24 +253,24 @@
                   </div>
                 </div>
               </div>
-              <div class="mt-3 mb-3 px-6 sm:mt-4 sm:flex sm:flex-row-reverse">
+              <div class="px-6 mt-3 mb-3 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <app-button
                   v-if="!isEdit"
                   @click="addEducation"
                   :processing="processing"
-                  class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >Add Education
                 </app-button>
                 <app-button
                   v-if="isEdit"
                   @click="updateEducation"
                   :processing="processing"
-                  class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >Update Education
                 </app-button>
                 <button
                   type="button"
-                  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:w-auto sm:text-sm"
+                  class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:w-auto sm:text-sm"
                   @click="open = false"
                 >Cancel</button>
               </div>
@@ -377,6 +377,7 @@ async function addEducation() {
         toast.success("Education successfully added");
         getUserEducation();
         open.value = false;
+        v$.value.$reset();
       })
       .catch((err) => {
         console.log(err);
