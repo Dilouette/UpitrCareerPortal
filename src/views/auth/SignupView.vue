@@ -107,6 +107,13 @@
                 v-model="signupForm.password"
                 class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              <div
+                class="mt-1 text-red-600"
+                v-for="error of v$.password.$errors"
+                :key="error.$uid"
+              >
+                <div class="text-xs text-red-600">{{ error.$message }}</div>
+              </div>
             </div>
           </div>
 
@@ -142,10 +149,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
-import { required, email } from '@vuelidate/validators';
+import { required, email, helpers, minLength } from '@vuelidate/validators';
 import useVuelidate from '@vuelidate/core';
 
 import { useSignup } from "../../stores/signup";
@@ -163,14 +170,22 @@ const signupForm = ref({
 
 const loading = ref(false);
 
-const rules = {
-  firstname: { required }, 
-  middlename: { required }, 
-  lastname: { required }, 
-  email: { required, email },
-  gender_id: { required },
-  password: { required }
-}
+// const passwordStrength = helpers.regex(/^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{6,}$/);
+
+const rules = computed(() => {
+  return {
+    firstname: { required }, 
+    middlename: { required }, 
+    lastname: { required }, 
+    email: { required, email },
+    gender_id: { required },
+    password: {
+      required: helpers.withMessage("Enter password", required),
+      minLength: helpers.withMessage("Password lenght must be at least 8 characters long", minLength(8)),
+      // alphaNum: helpers.withMessage('Password must have at least one Uppercase, number and a special character', passwordStrength)
+    },
+  };
+});
 
 const toast = useToast();
 const router = useRouter();

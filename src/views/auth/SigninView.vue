@@ -106,8 +106,11 @@ async function signin() {
       toast.success('Login successful');
       router.push('/dashboard');
     }).catch((error) => {
-      console.log(error);
-      toast.error('An error occured');
+      if (error.status === 401) {
+        toast.error('Invalid username or password');
+        return;
+      }
+      toast.error('Something went wrong, please try again later');
     }).finally(() => {
       loading.value = false;
     })
