@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import JobListView from "../views/job/ListView.vue";
+import JobListView from "../views/job/JobListing.vue";
 import JobDetailView from "../views/job/DetailView.vue";
 import AppliedListView from "../views/job/AppliedListView.vue";
 

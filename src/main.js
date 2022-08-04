@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia, storeToRefs } from 'pinia';
+import { vue3Debounce } from 'vue-debounce';
 import Toast from 'vue-toastification';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import SideBar from './components/layout/SideBar.vue';
@@ -88,6 +89,7 @@ app.component('AppModal', AppModal);
 app.component('DetailSkeleton', DetailSkeleton);
 app.component('ListSkeleton', ListSkeleton);
 
+app.directive('debounce', vue3Debounce({ lock: true}));
 const appStore = useAppStore();
 const { isAuthenticated } = storeToRefs(useAuthentication());
 

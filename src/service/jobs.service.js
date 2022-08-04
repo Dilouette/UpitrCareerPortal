@@ -1,7 +1,39 @@
 import axios from "axios";
 const basePath = "jobs";
 
-const JobsService = {  
+const JobsService = {
+  get(url) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(url)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          if (error.response) {
+            reject(error.response);
+          } else {
+            reject(new Error(error));
+          }
+        });
+    });
+  },
+  all(slug = "") {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/${basePath}?${slug}`)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          if (error.response) {
+            reject(error.response);
+          } else {
+            reject(new Error(error));
+          }
+        });
+    });
+  },
   getJobs() {
     return new Promise((resolve, reject) => {
       axios
