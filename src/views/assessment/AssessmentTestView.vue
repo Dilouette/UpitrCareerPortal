@@ -3,20 +3,13 @@
       <!-- Page header -->
       <div class="max-w-3xl px-4 mx-auto sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
         <div class="flex items-center space-x-5">
-          <div class="flex-shrink-0">
-            <div class="relative">
-              <UserCircleIcon class="w-16 h-16 text-indigo-500 rounded-full"></UserCircleIcon>
-              <span class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
-            </div>
-          </div>
           <div>
-            <h1 class="text-2xl font-bold text-gray-900">{{ userInfo.firstname }} {{ userInfo.middlename }} {{ userInfo.lastname }}</h1>
-            <p class="text-sm font-medium text-gray-500">Created <timeago class="ml-1" :datetime="userInfo.created_at"/></p>
+            <!-- <h1 class="text-2xl font-bold text-gray-900">{{ userInfo.firstname }} {{ userInfo.middlename }} {{ userInfo.lastname }}</h1> -->
+            <!-- <p class="text-sm font-medium text-gray-500">Created <timeago class="ml-1" :datetime="userInfo.created_at"/></p> -->
           </div>
         </div>
         <div class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
           <button type="button" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">View Jobs</button>
-          <a href="/account/profile" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">Update Profile</a>
         </div>
       </div>
 
@@ -33,23 +26,23 @@
                 <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Current role</dt>
-                    <dd class="mt-1 text-sm text-gray-900">{{ userInfo.job_function.name }}</dd>
+                    <dd class="mt-1 text-sm text-gray-900">Backend Developer</dd>
                   </div>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                    <dd class="mt-1 text-sm text-gray-900">{{ userInfo.email }}</dd>
+                    <!-- <dd class="mt-1 text-sm text-gray-900">{{ userInfo.email }}</dd> -->
                   </div>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Years of experience</dt>
-                    <dd class="mt-1 text-sm" :class="userInfo.years_of_experience==null?'text-red-500':'text-gray-900'">{{ userInfo.years_of_experience ?? "Unavailable" }}</dd>
+                    <!-- <dd class="mt-1 text-sm" :class="userInfo.years_of_experience==null?'text-red-500':'text-gray-900'">{{ userInfo.years_of_experience ?? "Unavailable" }}</dd> -->
                   </div>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Phone</dt>
-                    <dd class="mt-1 text-sm" :class="userInfo.phone==null?'text-red-500':'text-gray-900'">{{ userInfo.phone ?? "Unavailable" }}</dd>
+                    <!-- <dd class="mt-1 text-sm" :class="userInfo.phone==null?'text-red-500':'text-gray-900'">{{ userInfo.phone ?? "Unavailable" }}</dd> -->
                   </div>
                   <div class="sm:col-span-2">
                     <dt class="text-sm font-medium text-gray-500">Summary</dt>
-                    <dd class="mt-1 text-sm" :class="userInfo.summary==null?'text-red-500':'text-gray-900'">{{ userInfo.summary ?? "Unavailable" }}</dd>
+                    <!-- <dd class="mt-1 text-sm" :class="userInfo.summary==null?'text-red-500':'text-gray-900'">{{ userInfo.summary ?? "Unavailable" }}</dd> -->
                   </div>
                 </dl>
               </div>
@@ -76,12 +69,16 @@
     </main>
 </template>
 <script setup>
-//import { ref } from "vue";
-import {
-  UserCircleIcon,
-} from "@heroicons/vue/solid";
-import { useAuthentication } from "@/stores/authentication.js";
+import { ref, onMounted } from "vue";
+import AssessmentService from "../../service/assessment.service";
 
-const { userInfo } = useAuthentication();
+const props = defineProps({
+  id: String
+});
 
+onMounted(() => {
+  AssessmentService.start(Number(props.id)).then(response => {
+    console.log(response);
+  })
+})
 </script>

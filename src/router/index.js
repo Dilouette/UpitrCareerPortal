@@ -16,6 +16,7 @@ import ProfileView from "../views/profile/ProfileView.vue";
 import MessageListView from "../views/message/ListView.vue";
 
 import AssessmentListView from "../views/assessment/ListView.vue";
+import AssessmentTestView from "../views/assessment/AssessmentTestView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -248,6 +249,16 @@ const router = createRouter({
             requiresAuth: true,
           },
           component: AssessmentListView,
+        },
+        {
+          name: "ApplicantAssessments",
+          path: "account/applicant/assessments/:id",
+          meta: {
+            pageTitle: "Applicant Assessment",
+            requiresAuth: true,
+          },
+          component: AssessmentTestView,
+          props: true
         },
       ],
     },

@@ -18,6 +18,22 @@ const JobsService = {
         });
     });
   },
+  submut(payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`/${basePath}`, payload)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          if (error.response) {
+            reject(error.response);
+          } else {
+            reject(new Error(error));
+          }
+        });
+    });
+  },
   start(id) {
     return new Promise((resolve, reject) => {
       axios
