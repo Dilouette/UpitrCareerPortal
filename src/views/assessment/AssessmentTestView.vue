@@ -1,84 +1,127 @@
 <template>
   <main class="py-10">
-      <!-- Page header -->
-      <div class="max-w-3xl px-4 mx-auto sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
-        <div class="flex items-center space-x-5">
-          <div>
-            <!-- <h1 class="text-2xl font-bold text-gray-900">{{ userInfo.firstname }} {{ userInfo.middlename }} {{ userInfo.lastname }}</h1> -->
-            <!-- <p class="text-sm font-medium text-gray-500">Created <timeago class="ml-1" :datetime="userInfo.created_at"/></p> -->
-          </div>
-        </div>
-        <div class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
-          <button type="button" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">View Jobs</button>
-        </div>
-      </div>
-
-      <div class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 sm:px-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
-        <div class="space-y-6 lg:col-start-1 lg:col-span-2">
-          <!-- Description list-->
-          <section aria-labelledby="applicant-information-title">
-            <div class="bg-white shadow sm:rounded-lg">
-              <div class="px-4 py-5 sm:px-6">
-                <h2 id="applicant-information-title" class="text-lg font-medium leading-6 text-gray-900">Basic Information</h2>
-                <p class="max-w-2xl mt-1 text-sm text-gray-500">Personal details and application.</p>
-              </div>
-              <div class="px-4 py-5 border-t border-gray-200 sm:px-6">
-                <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                  <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-gray-500">Current role</dt>
-                    <dd class="mt-1 text-sm text-gray-900">Backend Developer</dd>
-                  </div>
-                  <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                    <!-- <dd class="mt-1 text-sm text-gray-900">{{ userInfo.email }}</dd> -->
-                  </div>
-                  <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-gray-500">Years of experience</dt>
-                    <!-- <dd class="mt-1 text-sm" :class="userInfo.years_of_experience==null?'text-red-500':'text-gray-900'">{{ userInfo.years_of_experience ?? "Unavailable" }}</dd> -->
-                  </div>
-                  <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-gray-500">Phone</dt>
-                    <!-- <dd class="mt-1 text-sm" :class="userInfo.phone==null?'text-red-500':'text-gray-900'">{{ userInfo.phone ?? "Unavailable" }}</dd> -->
-                  </div>
-                  <div class="sm:col-span-2">
-                    <dt class="text-sm font-medium text-gray-500">Summary</dt>
-                    <!-- <dd class="mt-1 text-sm" :class="userInfo.summary==null?'text-red-500':'text-gray-900'">{{ userInfo.summary ?? "Unavailable" }}</dd> -->
-                  </div>
-                </dl>
-              </div>
-              <div>
-                <a href="account/profile" class="block px-4 py-4 text-sm font-medium text-center text-gray-500 bg-gray-50 hover:text-gray-700 sm:rounded-b-lg">View full profile</a>
+    <div class="max-w-3xl mx-auto mt-8 sm:px-6 lg:max-w-7xl">
+      <div class="space-y-6">
+        <!-- Description list-->
+        <section aria-labelledby="applicant-information-title">
+          <div class="bg-white shadow sm:rounded-lg">
+            <div v-if="assessment !== null" class="px-4 py-5 sm:px-6 grid grid-cols-6">
+              <span class="col-start-1 col-span-4">
+                <span class="font-bold pr-3">{{questionCount}} of {{assessmentInfo.total}}</span> {{assessment.question.question}}</span>
+              <div class="col-end-7 col-span-2 text-right">
+                <vue-countdown  @end="onTimerEnd" :time="assessmentInfo.duration * 60 *1000" v-slot="{ hours, minutes, seconds }">
+                  Time Remaining: {{hours}}:{{minutes}}:{{seconds}}
+                </vue-countdown>
               </div>
             </div>
-          </section>
-        </div>
-
-        <section aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
-          <div class="px-4 py-5 bg-white shadow sm:rounded-lg sm:px-6">
-            <h2 id="timeline-title" class="text-lg font-medium text-gray-900">Timeline</h2>
-            <div class="relative block w-full p-12 mt-6 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-12 h-12 mx-auto text-gray-400 bi bi-x-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
-              <span class="block mt-2 text-sm font-medium text-gray-900"> No activity here </span>
+            <div v-if="assessment !== null" class="px-4 py-5 border-t border-gray-200 sm:px-6">
+              <fieldset class="mt-4">
+                <div class="space-y-4">
+                  <div
+                    :key="option.id"
+                    class="flex items-center"
+                    v-for="option in assessment.question.assesment_question_options"
+                  >
+                    <input
+                      type="radio"
+                      :id="option.id"
+                      :name="assessment.question.id"
+                      :checked="option.answer"
+                      v-bind:value="option.answer"
+                      @change="optionChange(assessment.question, option)"
+                      class="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                    />
+                    <label
+                      :for="option.id"
+                      class="block ml-3 text-sm font-medium text-gray-700"
+                    >
+                      {{ option.value }}
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <template v-if="loading">
+              <list-skeleton
+                class="px-5 py-4 border rounded-lg shadow-lg"
+                :class="'bg-white border-slate-200'"
+                v-for="n in 3"
+                :key="n"
+              ></list-skeleton>
+            </template>
+            <div >
+              <button
+                :disabled="selectedOption === null || submitting"
+                @click="nextQuestion"
+                :class="submitting || selectedOption === null ? 'cursor-not-allowed' : 'cursor-pointer'"
+                class="w-full block px-4 py-4 text-sm font-medium text-center text-gray-500 bg-gray-50 hover:text-gray-700 sm:rounded-b-lg"
+              >Next</button>
             </div>
           </div>
         </section>
       </div>
-    </main>
+    </div>
+  </main>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import AssessmentService from "../../service/assessment.service";
+import { useAssessment } from "../../stores/assessment";
 
-const props = defineProps({
-  id: String
-});
+// const props = defineProps({
+//   id: String,
+// });
+
+const { assessmentInfo } = storeToRefs(useAssessment());
+
+const assessment = ref(null);
+const questionCount = ref(0);
+const selectedOption = ref(null);
+const loading = ref(false);
+const submitting = ref(false);
+
+function optionChange(id, item) {
+//  console.log(id, item);
+ selectedOption.value = item;
+}
+
+function onTimerEnd() {
+  // alert('Assessment End');
+}
+
+function nextQuestion() {
+  if (selectedOption.value === null) {
+    return;
+  }
+
+  submitting.value = true;
+
+  const payload = {
+    applicant_assesment_id: assessmentInfo.value.id,
+    assesment_question_id: selectedOption.value.assesment_question_id,
+    assesment_question_option_id: selectedOption.value.id
+  }
+
+  AssessmentService.submit(payload).then(response => {
+    const { data } = response.data;
+    assessment.value = data;
+    questionCount.value = questionCount.value + 1;
+  }).catch(() => {})
+  .finally(() => {
+    submitting.value = false;
+  })
+}
 
 onMounted(() => {
-  AssessmentService.start(Number(props.id)).then(response => {
-    console.log(response);
+  loading.value = true;
+  AssessmentService.start(Number(assessmentInfo.value.id)).then((response) => {
+    const { data } = response.data;
+    assessment.value = data;
+    questionCount.value = questionCount.value + 1;
+  }).catch(() => {})
+  .finally(() => {
+    loading.value = false;
   })
-})
+});
 </script>

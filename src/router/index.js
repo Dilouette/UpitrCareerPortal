@@ -252,13 +252,12 @@ const router = createRouter({
         },
         {
           name: "ApplicantAssessments",
-          path: "account/applicant/assessments/:id",
+          path: "account/applicant/assessments",
           meta: {
             pageTitle: "Applicant Assessment",
             requiresAuth: true,
           },
           component: AssessmentTestView,
-          props: true
         },
       ],
     },

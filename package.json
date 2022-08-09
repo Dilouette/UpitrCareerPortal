@@ -12,6 +12,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@chenfengyuan/vue-countdown": "^2.0.0",
     "@ckeditor/ckeditor5-build-classic": "^34.1.0",
     "@ckeditor/ckeditor5-vue": "^4.0.1",
     "@headlessui/vue": "^1.6.2",

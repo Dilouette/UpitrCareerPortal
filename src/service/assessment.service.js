@@ -18,7 +18,7 @@ const JobsService = {
         });
     });
   },
-  submut(payload) {
+  submit(payload) {
     return new Promise((resolve, reject) => {
       axios
         .post(`/${basePath}`, payload)

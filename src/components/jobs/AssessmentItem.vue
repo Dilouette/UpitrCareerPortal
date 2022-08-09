@@ -18,19 +18,41 @@
                   <span class="px-2 font-bold">/</span>
                   <span class="font-bold"><i class="mr-2 fa-solid fa-location-dot"></i>{{item.assesment.job.city.name }} {{item.assesment.job.city.region.name }} {{item.assesment.job.city.region.country.name }}</span>
                 </div>
+                <div class="mt-4 text-md">
+                  <span class="text-blue-700">Due date: {{ FormatLongDate(item.assesment.deadline) }}</span> <i class="font-bold"> | </i>
+                  <span class="font-bold">Score: {{ item.score !== null ? item.score : 0 }}</span>
+                </div>
             </div>
           </div>
           <!-- Right side -->
           <div class="flex items-center pl-10 space-x-4 md:pl-0">
-              <router-link class="inline-flex px-6 py-1 mx-3 mb-2 text-sm font-semibold border-2 shadow-lg text-slate-800 border-slate-800" :to="`applicant/assessments/${item.id}`">Start</router-link>
+              <button class="inline-flex px-6 py-1 mx-3 mb-2 text-sm font-semibold border-2 shadow-lg text-slate-800 border-slate-800" @click="startAssessment">Start</button>
           </div>
       </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AssessmentItem',
-  props: ['item'],
+<script setup>
+import { useRouter } from "vue-router";
+import { FormatLongDate } from "../../util/Formatter";
+import { useAssessment } from "../../stores/assessment";
+
+const props = defineProps({
+  item: Object
+})
+
+const router = useRouter();
+const assessmentStore = useAssessment();
+
+function startAssessment() {
+  assessmentStore.$reset();
+  const payload = {
+    id: props.item.id,
+    total: props.item.assesment.questions_per_candidate,
+    duration: props.item.assesment.duration,
+  };
+
+  assessmentStore.updateAssessment(payload);
+  router.push({ name: 'ApplicantAssessments' });
 }
 </script>

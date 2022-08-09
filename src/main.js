@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia, storeToRefs } from 'pinia';
 import { vue3Debounce } from 'vue-debounce';
+import VueCountdown from '@chenfengyuan/vue-countdown';
 import Toast from 'vue-toastification';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import SideBar from './components/layout/SideBar.vue';
@@ -85,6 +86,7 @@ app.component("TagInput", TagInput);
 app.component('QuillEditor', QuillEditor);
 app.component('MultiSelect', Multiselect);
 app.component('AppModal', AppModal);
+app.component(VueCountdown.name, VueCountdown);
 
 app.component('DetailSkeleton', DetailSkeleton);
 app.component('ListSkeleton', ListSkeleton);
