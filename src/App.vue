@@ -1,9 +1,11 @@
 <script setup>
 import { onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
+import { useProfile } from "./stores/profile";
 import { useMiscellaneous } from "./stores/miscellaneous";
 import { useAuthentication } from "./stores/authentication";
 
+const profileStore = useProfile();
 const miscStore = useMiscellaneous();
 const { isAuthenticated } = storeToRefs(useAuthentication());
 
@@ -21,6 +23,9 @@ function fetchGeneralData () {
     miscStore.fetchActivityRelations();
     miscStore.fetchActivityImportance();
     miscStore.fetchDegreeClassification();
+
+    profileStore.fetchEducation();
+    profileStore.fetchExperience();
 }
 
 onMounted(() => {

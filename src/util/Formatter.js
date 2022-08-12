@@ -35,6 +35,11 @@ export const FormatTime = (dateValue) => {
     return moment(dateValue).format('h:mm:ss a');
 }
 
+export const CapitalizeFirstLetter = (str) => {
+    const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+    return capitalized;
+}
+
 // export const FormatNumber = (value) => {
 //     const num = new Intl.NumberFormat('en-US', { style: 'number' }).format(value);
 //     return num;

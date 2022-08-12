@@ -318,14 +318,14 @@
 </template>
 
 <script setup>
+import { reactive, computed, onMounted, ref, inject } from "vue";
+import { useRouter } from "vue-router";
 import {
   CurrencyDollarIcon,
   LocationMarkerIcon,
   BriefcaseIcon,
 } from "@heroicons/vue/solid";
-
 import JobsService from "../../service/jobs.service";
-import { reactive, computed, onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useToast } from "vue-toastification";
 import Swal from "sweetalert2";
@@ -339,7 +339,10 @@ import {
   SwitchGroup,
   SwitchLabel,
 } from "@headlessui/vue";
+import { useProfile } from "../../stores/profile";
 import { useAuthentication } from "../../stores/authentication";
+import { JobSettings } from "../../util/Constants";
+import { CapitalizeFirstLetter } from "../../util/Formatter";
 
 const props = defineProps({
   id: {
@@ -349,13 +352,16 @@ const props = defineProps({
 });
 
 const toast = useToast();
+const router = useRouter();
+const swal = inject("$swal");
 
+const { education, experiences } = storeToRefs(useProfile());
 const { userInfo } = storeToRefs(useAuthentication());
 
 const job = ref({});
+const open = ref(false);
 const loading = ref(false);
 const processing = ref(false);
-const open = ref(false);
 
 const questions = ref([]);
 
@@ -366,19 +372,48 @@ const city = reactive({
 });
 
 function initApply() {
-  // const jobSettings = job.value.job_settings[0];
-  // Object.keys(jobSettings).forEach((value) => {
-  //   console.log(value, jobSettings[value]);
-  //   console.log(value, userInfo.value[value]);
-  // })
+  const settings = job.value.job_settings;
+  const requiredFields = [];
+  
+  if (education.value.length === 0) requiredFields.push('Education');
+  if (experiences.value.length === 0) requiredFields.push('Experiences');
+  if (userInfo.value.industry === null)  requiredFields.push('Industry');
+  if (userInfo.value.job_function === null) requiredFields.push('Job Function');
+
+  Object.keys(settings).forEach((field) => {
+    if (settings[field] === JobSettings.Mandatory && field in userInfo.value) {
+      if (userInfo.value[field] === null || userInfo.value[field] === '') {
+        requiredFields.push(field === 'dob' ? "Date of Birth" : CapitalizeFirstLetter(field));
+      }
+    }
+  })
+
   if (job.value.job_questions.length > 0) {
     questions.value = job.value.job_questions.map((question) => {
       question.response =
         question.job_question_type.name == "True Or False" ? false : null;
       return question;
     });
-    open.value = true;
   }
+
+  if (requiredFields.length > 0) {
+    let errorMessage = `Kindly update your ${requiredFields.join(', ')}, before applying for this job`;
+    swal({
+      title: "Profile Update",
+      text: errorMessage,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: 'Go to Profile'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push({ name: "Profile" });
+      }
+    });
+
+    return;
+  }
+
+  open.value = true;
 }
 
 function apply() {

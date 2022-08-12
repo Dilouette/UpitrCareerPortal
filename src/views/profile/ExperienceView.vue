@@ -284,6 +284,7 @@ import { useToast } from "vue-toastification";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import Swal from "sweetalert2";
+import { useProfile } from "../../stores/profile";
 import { useMiscellaneous } from "../../stores/miscellaneous";
 import ExperienceService from "../../service/experience.service";
 import { FormatMonthYear } from "../../sourcery/formatters";
@@ -300,6 +301,7 @@ import { TrashIcon, PencilAltIcon } from "@heroicons/vue/solid";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
+const profileStore = useProfile();
 const { industries } = storeToRefs(
   useMiscellaneous()
 );
@@ -465,6 +467,7 @@ async function getuserExperience() {
     .then((res) => {
       const { data } = res.data.data;
       userExperience.value = data;
+      profileStore.updateExperience(data);
     })
     .catch((err) => {
       console.log(err);

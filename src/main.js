@@ -39,10 +39,13 @@ import "vue-toastification/dist/index.css";
 
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
+const swalOptions = {
+    confirmButtonColor: '#1D4ED8',
+  };
 
 import App from './App.vue';
 import router from './router';
+
 CoreService.init();
 
 const app = createApp(App);
@@ -51,7 +54,7 @@ const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 app.use(pinia);
 app.use(router);
-app.use(VueSweetalert2);
+app.use(VueSweetalert2, swalOptions);
 app.use(VueLoading, {
     color: 'blue'
 });

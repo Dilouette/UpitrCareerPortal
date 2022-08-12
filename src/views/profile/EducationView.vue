@@ -288,6 +288,7 @@ import { useToast } from "vue-toastification";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import Swal from "sweetalert2";
+import { useProfile } from "../../stores/profile";
 import { useMiscellaneous } from "../../stores/miscellaneous";
 import EducationService from "../../service/education.service";
 import { FormatMonthYear } from "../../sourcery/formatters";
@@ -304,6 +305,7 @@ import { TrashIcon, PencilAltIcon } from "@heroicons/vue/solid";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
+const profileStore = useProfile();
 const { educationLevels, degreeClassifications } = storeToRefs(
   useMiscellaneous()
 );
@@ -483,11 +485,12 @@ async function getUserEducation() {
     .then((res) => {
       const { data } = res.data.data;
       userEducation.value = data;
+      profileStore.updateEducation(data);
     })
     .catch((err) => {
       console.log(err);
       toast.error(
-        "Could not fetch your education details at the moment please referesh page"
+        "Could not fetch your education details at the moment please refresh page"
       );
     })
     .finally(() => {
