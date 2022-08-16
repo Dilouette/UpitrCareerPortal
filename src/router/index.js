@@ -13,7 +13,7 @@ import ForgotPasswordView from "../views/auth/ForgotPasswordView.vue";
 import DashboardView from "../views/dashboard/DashboardView.vue";
 import ProfileView from "../views/profile/ProfileView.vue";
 
-import MessageListView from "../views/message/ListView.vue";
+import MessageListView from "../views/message/MessagesView.vue";
 
 import AssessmentListView from "../views/assessment/ListView.vue";
 import AssessmentTestView from "../views/assessment/AssessmentTestView.vue";
@@ -25,10 +25,10 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition;
     } else {
-      return { top: 0};
+      return { top: 0 };
     }
   },
-  
+
   routes: [
     {
       path: "/",
@@ -52,7 +52,7 @@ const router = createRouter({
             requiresAuth: false,
           },
           component: JobDetailView,
-          props: true
+          props: true,
         },
       ],
     },
@@ -101,7 +101,9 @@ const router = createRouter({
             requiresAuth: false,
           },
           component: ResetPasswordView,
-          props: route => ({ query: { email: route.query.email, token: route.query.token} })
+          props: (route) => ({
+            query: { email: route.query.email, token: route.query.token },
+          }),
         },
       ],
     },
@@ -207,7 +209,7 @@ const router = createRouter({
             requiresAuth: true,
           },
           component: JobDetailView,
-          props: true
+          props: true,
         },
         {
           name: "AppliedJobs",

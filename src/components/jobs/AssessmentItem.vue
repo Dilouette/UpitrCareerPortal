@@ -19,13 +19,19 @@
                   <span class="font-bold"><i class="mr-2 fa-solid fa-location-dot"></i>{{item.assesment.job.city.name }} {{item.assesment.job.city.region.name }} {{item.assesment.job.city.region.country.name }}</span>
                 </div>
                 <div class="mt-4 text-md">
-                  <span class="text-blue-700">Due date: {{ FormatLongDate(item.assesment.deadline) }}</span> <i class="font-bold"> | </i>
-                  <span class="font-bold">Score: {{ item.score !== null ? item.score : 0 }}</span>
+                  <span class="text-blue-700">Due date: {{ FormatLongDate(item.assesment.deadline) }}</span> <i class="font-bold"></i>
+                </div>
+                <div class="mt-4 text-md">
+                  <span class="font-bold mr-2">Score: {{ item.score !== null ? item.score : 0 }}</span>
+                  <span 
+                    :class="item.is_passed ? 'text-indigo-800 bg-indigo-100' : 'text-red-800 bg-red-100'"
+                    class="inline-flex px-4 leading-5 rounded-full">{{ item.is_passed ? "Pass" : "Fail" }}
+                  </span>
                 </div>
             </div>
           </div>
           <!-- Right side -->
-          <div class="flex items-center pl-10 space-x-4 md:pl-0">
+          <div v-if="item.status_id === 1" class="flex items-center pl-10 space-x-4 md:pl-0">
               <button class="inline-flex px-6 py-1 mx-3 mb-2 text-sm font-semibold border-2 shadow-lg text-slate-800 border-slate-800" @click="startAssessment">Start</button>
           </div>
       </div>

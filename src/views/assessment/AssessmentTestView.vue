@@ -64,7 +64,8 @@
   </main>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, inject, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import AssessmentService from "../../service/assessment.service";
 import { useAssessment } from "../../stores/assessment";
@@ -75,10 +76,14 @@ import { useAssessment } from "../../stores/assessment";
 
 const { assessmentInfo } = storeToRefs(useAssessment());
 
+const router = useRouter();
+const swal = inject("$swal");
+
 const assessment = ref(null);
 const questionCount = ref(0);
 const selectedOption = ref(null);
 const loading = ref(false);
+const completed = ref(false);
 const submitting = ref(false);
 
 function optionChange(id, item) {
@@ -87,7 +92,23 @@ function optionChange(id, item) {
 }
 
 function onTimerEnd() {
-  // alert('Assessment End');
+    AssessmentService.complete(assessmentInfo.value.id).then(() => {
+      swal({
+        title: "Assessment Completed",
+        text: "Your time for the assessment has elapsed, your assessment has come to an end",
+        icon: "info",
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push({ name: "Assessments" });
+        }
+      });
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      // submitting.value = false;
+    })
 }
 
 function nextQuestion() {
@@ -106,11 +127,37 @@ function nextQuestion() {
   AssessmentService.submit(payload).then(response => {
     const { data } = response.data;
     assessment.value = data;
+    completed.value = data.is_completed;
+    if (completed.value) {
+      submitting.value = false;
+      completeAssessment();
+      return;
+    }
     questionCount.value = questionCount.value + 1;
   }).catch(() => {})
   .finally(() => {
     submitting.value = false;
   })
+}
+
+function completeAssessment() {
+  AssessmentService.complete(assessmentInfo.value.id).then(() => {
+      swal({
+        title: "Assessment Completed",
+        text: "Your assessment has been completed, you will be redirected to the assessment page.",
+        icon: "info",
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push({ name: "Assessments" });
+        }
+      });
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      // submitting.value = false;
+    })
 }
 
 onMounted(() => {

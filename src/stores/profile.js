@@ -35,14 +35,14 @@ export const useProfile = defineStore({
             })
         },
         fetchExperience() {
-            this.fetchExperience = true;
+            this.fetchingExperience = true;
             ExperienceService.all().then(response => {
                 const { data } = response.data.data;
                 this.experiences = data;
             }).catch(() => {
                 // log error
             }).finally(() => {
-                this.fetchExperience = false;
+                this.fetchingExperience = false;
             })
         },
         updateEducation(payload) {

@@ -1,11 +1,11 @@
 import axios from "axios";
-const basePath = "assessments";
+const basePath = "messages";
 
-const JobsService = {  
-  get() {
+const EducationService = {
+  get(url) {
     return new Promise((resolve, reject) => {
       axios
-        .get(`/${basePath}`)
+        .get(url)
         .then((result) => {
           resolve(result);
         })
@@ -18,10 +18,10 @@ const JobsService = {
         });
     });
   },
-  submit(payload) {
+  all(slug = "") {
     return new Promise((resolve, reject) => {
       axios
-        .post(`/${basePath}`, payload)
+        .get(`/${basePath}${slug}`)
         .then((result) => {
           resolve(result);
         })
@@ -34,10 +34,10 @@ const JobsService = {
         });
     });
   },
-  start(id) {
+  single(id) {
     return new Promise((resolve, reject) => {
       axios
-        .put(`/${basePath}/start/${id}`)
+        .get(`/${basePath}/${id}`)
         .then((result) => {
           resolve(result);
         })
@@ -50,10 +50,10 @@ const JobsService = {
         });
     });
   },
-  complete(id) {
+  open(id) {
     return new Promise((resolve, reject) => {
       axios
-      .put(`/${basePath}/complete/${id}`)
+        .get(`/${basePath}/open/${id}`)
         .then((result) => {
           resolve(result);
         })
@@ -68,4 +68,4 @@ const JobsService = {
   },
 };
 
-export default JobsService;
+export default EducationService;

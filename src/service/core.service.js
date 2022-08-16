@@ -7,7 +7,6 @@ const CoreService = {
     axios.defaults.baseURL = "https://upitr.herokuapp.com/api/v1/career-portal";
     // axios.defaults.baseURL = "https://ats-api.rainoil.com.ng/api/v1/career-portal";
 
-
     axios.defaults.headers.common.Accept = "application/json";
 
     axios.interceptors.request.use(
