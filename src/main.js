@@ -18,6 +18,9 @@ import CancelButton from './components/forms/CancelButton.vue';
 import AppModal from './components/commons/modal/AppModal.vue';
 import CoreService from  './service/core.service';
 
+import { VTooltip, Tooltip } from 'floating-vue';
+import 'floating-vue/dist/style.css';
+
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
@@ -89,12 +92,14 @@ app.component("TagInput", TagInput);
 app.component('QuillEditor', QuillEditor);
 app.component('MultiSelect', Multiselect);
 app.component('AppModal', AppModal);
+app.component('VTooltip', Tooltip);
 app.component(VueCountdown.name, VueCountdown);
 
 app.component('DetailSkeleton', DetailSkeleton);
 app.component('ListSkeleton', ListSkeleton);
 
 app.directive('debounce', vue3Debounce({ lock: true}));
+app.directive('tooltip', VTooltip);
 const appStore = useAppStore();
 const { isAuthenticated } = storeToRefs(useAuthentication());
 
@@ -105,12 +110,11 @@ router.beforeEach((to, from, next) =>
         appStore.setPageTitle(to.meta?.pageTitle);
     }
     appStore.setPageName(to.name);
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!isAuthenticated.value) {
-            router.push({ name: 'Signin' });
-        }
-    }
-    next();    
+    if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated.value) {
+        next({ name: "Signin" });
+    } else {
+        next();
+    }  
 })
 
 app.mount('#app');

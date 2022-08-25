@@ -49,8 +49,6 @@ const router = useRouter();
 const { candidate } = storeToRefs(useSignup());
 const loading = ref(false);
 
-console.log(candidate.value);
-
 async function emailConfirmation() {
   loading.value = true;
 
@@ -64,8 +62,8 @@ async function emailConfirmation() {
       router.push("/signin");
       toast.success("Your email has been confirmed successfully! Please login to continue.");
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
+      // console.log(error);
       toast.error("An error occured");
     })
     .finally(() => {

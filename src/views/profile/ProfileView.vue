@@ -587,7 +587,7 @@ import { required, helpers } from "@vuelidate/validators";
 import { useMiscellaneous } from "../../stores/miscellaneous";
 import { useAuthentication } from "@/stores/authentication.js";
 import MiscService from "../../service/miscellaneous.service";
-import ProfileService from "../../service/profile.service";
+import AccountService from "../../service/account.service";
 import EducationView from "./EducationView.vue";
 import ExperienceView from "./ExperienceView.vue";
 import Datepicker from "@vuepic/vue-datepicker";
@@ -700,7 +700,7 @@ async function updateProfile() {
       candidate.value.skills = skills.value.join();
     }
 
-    ProfileService.updateProfile(candidate.value)
+    AccountService.updateProfile(candidate.value)
       .then(() => {
         // const { data } = res.data;
         // setUserInfo(candidate.value);

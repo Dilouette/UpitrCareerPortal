@@ -1,7 +1,7 @@
 import axios from "axios";
 const basePath = "account";
 
-const ProfileService = {
+const AccountService = {
   updateProfile(data) {
     return new Promise((resolve, reject) => {
       axios
@@ -34,6 +34,22 @@ const ProfileService = {
         });
     });
   },
+  changePassword(data) {
+    return new Promise((resolve, reject) => {
+      axios
+        .put(`/${basePath}/change-password`, data)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          if (error.response) {
+            reject(error.response);
+          } else {
+            reject(new Error(error));
+          }
+        });
+    });
+  },
 };
 
-export default ProfileService;
+export default AccountService;

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import ProfileService from "../service/profile.service";
+import AccountService from "../service/account.service";
 import EducationService from "../service/education.service";
 import ExperienceService from "../service/experience.service";
 
@@ -15,7 +15,7 @@ export const useProfile = defineStore({
     getters: {},
     actions: {
         fetchUserProfile() {
-            ProfileService.getProfile().then(response => {
+            AccountService.getProfile().then(response => {
                 const { data } = response.data;
                 this.userInfo = data;
             })

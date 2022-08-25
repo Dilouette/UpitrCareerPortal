@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import TokenService from "../service/token.service";
-import ProfileService from "../service/profile.service";
+import AccountService from "../service/account.service";
 
 export const useAuthentication = defineStore({
     id: "authentication",
@@ -18,7 +18,7 @@ export const useAuthentication = defineStore({
             TokenService.saveToken(payload.access.token);
         },
         fetchUserProile() {
-            ProfileService.getProfile().then(response => {
+            AccountService.getProfile().then(response => {
                 const { data } = response.data;
                 this.userInfo = data;
             })

@@ -12,6 +12,7 @@ import ForgotPasswordView from "../views/auth/ForgotPasswordView.vue";
 
 import DashboardView from "../views/dashboard/DashboardView.vue";
 import ProfileView from "../views/profile/ProfileView.vue";
+import SettingsView from "../views/settings/SettingsView.vue";
 
 import MessageListView from "../views/message/MessagesView.vue";
 
@@ -184,6 +185,22 @@ const router = createRouter({
             requiresAuth: true,
           },
           component: ProfileView,
+        },
+      ],
+    },
+    {
+      path: "/",
+      redirect: "settings",
+      component: () => import("../views/layouts/JupiterLayout.vue"),
+      children: [
+        {
+          name: "Settings",
+          path: "account/settings",
+          meta: {
+            pageTitle: "Settings",
+            requiresAuth: true,
+          },
+          component: SettingsView,
         },
       ],
     },

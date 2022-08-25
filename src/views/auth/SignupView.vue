@@ -181,7 +181,7 @@ const rules = computed(() => {
     gender_id: { required },
     password: {
       required: helpers.withMessage("Enter password", required),
-      minLength: helpers.withMessage("Password lenght must be at least 8 characters long", minLength(8)),
+      minLength: helpers.withMessage("Password length must be at least 8 characters long", minLength(8)),
       // alphaNum: helpers.withMessage('Password must have at least one Uppercase, number and a special character', passwordStrength)
     },
   };
@@ -196,7 +196,6 @@ const { setSignupUser } = useSignup();
 async function signup() {
 
   const valid = await v$.value.$validate();
-  console.log(signupForm.value);
   if (valid) {
     loading.value = true;
     signupForm.value.password_confirmation = signupForm.value.password;
@@ -206,8 +205,11 @@ async function signup() {
         toast.success('Registration successful');
         router.push('/signup-successful');
     }).catch((error) => {
-        console.log(error);
-        toast.error('An error occured');
+        if ('email' in error.data.data) {
+          toast.error('An account with this email already exist');
+        } else {
+          toast.error('An error occurred');
+        }
     }).finally(() => {
         loading.value = false;
     })
