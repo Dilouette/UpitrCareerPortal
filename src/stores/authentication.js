@@ -17,7 +17,7 @@ export const useAuthentication = defineStore({
             this.isAuthenticated = true;
             TokenService.saveToken(payload.access.token);
         },
-        fetchUserProile() {
+        fetchUserProfile() {
             AccountService.getProfile().then(response => {
                 const { data } = response.data;
                 this.userInfo = data;

@@ -15,7 +15,7 @@
                     <span class="font-bold px-2">/</span>
                     <span class="font-bold"><i class="fa-solid fa-street-view mr-2"></i>{{item.is_remote == true ? "Remote Job" : "On Site" }}</span>
                     <span class="font-bold px-2">/</span>
-                    <span class="font-bold"><i class="fa-solid fa-location-dot mr-2"></i>{{item.city.name }} {{item.city.region.name }} {{item.city.region.country.name }}</span>
+                    <span class="font-bold"><i class="fa-solid fa-location-dot mr-2"></i>{{item.location}}, {{item.city.name }} {{item.city.region.name }} {{item.city.region.country.name }}</span>
                   </div>
               </div>
           </div>

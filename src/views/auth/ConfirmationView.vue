@@ -62,9 +62,9 @@ async function emailConfirmation() {
       router.push("/signin");
       toast.success("Your email has been confirmed successfully! Please login to continue.");
     })
-    .catch(() => {
-      // console.log(error);
-      toast.error("An error occured");
+    .catch((error) => {
+      const { data } = error;
+      toast.error(data.message);
     })
     .finally(() => {
       loading.value = false;

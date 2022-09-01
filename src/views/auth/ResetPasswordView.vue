@@ -118,6 +118,8 @@ const props = defineProps({
   },
 });
 
+const loading = ref(false);
+
 const formData = ref({
   email: "",
   token: "",
@@ -125,10 +127,9 @@ const formData = ref({
     newPassword: "",
     confirmPassword: "",
   },
-  // password_confirmation: "",
 });
 
-const loading = ref(false);
+const passwordStrength = helpers.regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
 
 const rules = computed(() => {
   return {
@@ -138,6 +139,7 @@ const rules = computed(() => {
       newPassword: {
         required: helpers.withMessage("Enter new password", required),
         minLength: minLength(8),
+        strength: helpers.withMessage("New Password must contain at least an Uppercase, a number and a special character", passwordStrength)
       },
       confirmPassword: {
         required: helpers.withMessage("Enter confirm password", required),

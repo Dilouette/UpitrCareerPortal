@@ -685,7 +685,7 @@ const { userInfo } = storeToRefs(useAuthentication());
 
 const v$ = useVuelidate(rules, candidate);
 
-const { fetchUserProile } = useAuthentication();
+const { fetchUserProfile } = useAuthentication();
 
 async function updateProfile() {
   const valid = await v$.value.$validate();
@@ -704,7 +704,7 @@ async function updateProfile() {
       .then(() => {
         // const { data } = res.data;
         // setUserInfo(candidate.value);
-        fetchUserProile();
+        fetchUserProfile();
         toast.success("Profile successfully updated");
       })
       .catch((err) => {
@@ -755,6 +755,7 @@ onMounted(() => {
 watch(
   () => candidate.value.country_id,
   (newValue) => {
+    if (newValue === null) return;
     regions.value = [];
     const id = Number(newValue);
     fetchingRegions.value = true;
@@ -771,6 +772,7 @@ watch(
 watch(
   () => candidate.value.region_id,
   (newValue) => {
+    if (newValue === null) return;
     cities.value = [];
     const id = Number(newValue);
     fetchingCities.value = true;

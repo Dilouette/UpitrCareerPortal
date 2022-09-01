@@ -154,10 +154,15 @@ import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { required, email, helpers, minLength } from '@vuelidate/validators';
 import useVuelidate from '@vuelidate/core';
-
 import { useSignup } from "../../stores/signup";
-
 import AuthService from "../../service/authentication.service";
+
+const toast = useToast();
+const router = useRouter();
+
+const { setSignupUser } = useSignup();
+
+const loading = ref(false);
 
 const signupForm = ref({
   firstname: '',
@@ -166,11 +171,9 @@ const signupForm = ref({
   email: '',
   gender_id: null,
   password: '',
-})
+});
 
-const loading = ref(false);
-
-// const passwordStrength = helpers.regex(/^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{6,}$/);
+const passwordStrength = helpers.regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
 
 const rules = computed(() => {
   return {
@@ -182,19 +185,14 @@ const rules = computed(() => {
     password: {
       required: helpers.withMessage("Enter password", required),
       minLength: helpers.withMessage("Password length must be at least 8 characters long", minLength(8)),
-      // alphaNum: helpers.withMessage('Password must have at least one Uppercase, number and a special character', passwordStrength)
+      strength: helpers.withMessage("New Password must contain at least an Uppercase, a number and a special character", passwordStrength)
     },
   };
 });
 
-const toast = useToast();
-const router = useRouter();
-const v$ = useVuelidate(rules, signupForm)
-
-const { setSignupUser } = useSignup();
+const v$ = useVuelidate(rules, signupForm);
 
 async function signup() {
-
   const valid = await v$.value.$validate();
   if (valid) {
     loading.value = true;

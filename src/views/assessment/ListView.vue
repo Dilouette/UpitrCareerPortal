@@ -65,8 +65,11 @@
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
+import { useToast } from "vue-toastification";
 import AssessmentService from "../../service/assessment.service";
 import AssessmentItem from "../../components/jobs/AssessmentItem.vue";
+
+const toast = useToast();
 
 const loading = ref(false);
 const assessments = ref([]);
@@ -78,7 +81,10 @@ onMounted(() => {
       const { data } = response.data;
       assessments.value = data.data;
     })
-    .catch(() => {})
+    .catch((error) => {
+      const { data } = error;
+      toast.error(data.message);
+    })
     .finally(() => {
       loading.value = false;
     });

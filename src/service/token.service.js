@@ -11,6 +11,7 @@ export const saveToken = token => {
 
 export const destroyToken = () => {
     window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.clear();
 }
 
 export default { getToken, saveToken, destroyToken };

@@ -66,6 +66,7 @@
 <script setup>
 import { ref, inject, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 import { storeToRefs } from "pinia";
 import AssessmentService from "../../service/assessment.service";
 import { useAssessment } from "../../stores/assessment";
@@ -77,6 +78,7 @@ import { useAssessment } from "../../stores/assessment";
 const { assessmentInfo } = storeToRefs(useAssessment());
 
 const router = useRouter();
+const toast = useToast();
 const swal = inject("$swal");
 
 const assessment = ref(null);
@@ -134,7 +136,10 @@ function nextQuestion() {
       return;
     }
     questionCount.value = questionCount.value + 1;
-  }).catch(() => {})
+  }).catch((error) => {
+    const { data } = error;
+    toast.error(data.message);
+  })
   .finally(() => {
     submitting.value = false;
   })
@@ -166,7 +171,10 @@ onMounted(() => {
     const { data } = response.data;
     assessment.value = data;
     questionCount.value = questionCount.value + 1;
-  }).catch(() => {})
+  }).catch((error) => {
+    const { data } = error;
+    toast.error(data.message);
+  })
   .finally(() => {
     loading.value = false;
   })
