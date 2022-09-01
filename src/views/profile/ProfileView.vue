@@ -695,10 +695,14 @@ async function updateProfile() {
   }
   if (valid) {
     candidate.value.dob = FormatDate(candidate.value.dob, "YYYY-MM-DD");
-    processing.value = true;
     if (skills.value.length > 0) {
       candidate.value.skills = skills.value.join();
+    } else {
+      toast.error("Provide at least one skill");
+      return;
     }
+
+    processing.value = true;
 
     AccountService.updateProfile(candidate.value)
       .then(() => {
@@ -707,9 +711,8 @@ async function updateProfile() {
         fetchUserProfile();
         toast.success("Profile successfully updated");
       })
-      .catch((err) => {
-        console.log(err);
-        toast.error("An error occured");
+      .catch(() => {
+        toast.error("An error occurred");
       })
       .finally(() => {
         processing.value = false;
