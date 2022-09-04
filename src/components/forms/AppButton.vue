@@ -7,10 +7,9 @@
       px-4
       py-2
       border border-transparent
-      shadow-sm
       text-sm
+      rounded-lg shadow-lg
       font-medium
-      rounded-sm
       text-white
       bg-indigo-600
       hover:bg-indigo-700

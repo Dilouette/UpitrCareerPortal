@@ -8,7 +8,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      'sans': ['Montserrat', 'Sans-serif']
+      'sans': ['Lexend Deca', 'Sans-serif']
     },
   },
   plugins: [
