@@ -23,7 +23,7 @@
             <div class="relative">
               <img
                 class="w-16 h-16 rounded-full"
-                src="../../assets/images/rainoil-icon.png"
+                src="../../assets/images/icon.png"
                 alt=""
               />
               <span

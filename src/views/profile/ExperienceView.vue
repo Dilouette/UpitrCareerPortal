@@ -18,24 +18,13 @@
       >
         <div class="flex items-center justify-between w-full p-6 space-x-6">
           <div class="flex-1 truncate">
-            <h3 class="text-sm font-medium text-gray-900 truncate">{{ experience.company }}</h3>
+            <h3 class="text-md font-medium text-gray-900 truncate">{{ experience.company }}</h3>
             <p class="mt-1 text-sm text-gray-500 truncate">{{ experience.industry.name }}</p>
             <p class="mt-1 text-xs font-bold text-gray-500 truncate">{{ experience.title }}</p>
             <p class="mt-1 text-xs text-gray-500 truncate">{{ experience.summary }}</p>
-            <p class="mt-1 text-sm text-gray-500 truncate"><i class="mr-1 fa-regular fa-calendar-check"></i>{{FormatMonthYear(experience.start_date)}} - {{FormatMonthYear(experience.end_date)}}</p>
+            <p class="mt-1 text-xs text-gray-500 truncate"><i class="mr-1 fa-regular fa-calendar-check"></i>{{FormatMonthYear(experience.start_date)}} - {{FormatMonthYear(experience.end_date)}}</p>
           </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="flex-shrink-0 w-8 h-8 rounded-full bi bi-building"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
-            />
-            <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
-          </svg>
+          <img class="flex-shrink-0 w-12 h-12" src="../../assets/images/office.png"/>
         </div>
         <div>
           <div class="flex -mt-px divide-x divide-gray-200">
@@ -218,6 +207,7 @@
                               class="block text-sm font-medium text-gray-700"
                             >Start Date</label>
                             <Datepicker
+                              autoApply
                               v-model="experience.start_date"
                               :format="format"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -237,6 +227,7 @@
                               class="block text-sm font-medium text-gray-700"
                             >End Date</label>
                             <Datepicker
+                              autoApply
                               v-model="experience.end_date"
                               :format="format"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

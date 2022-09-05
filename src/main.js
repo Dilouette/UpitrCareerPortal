@@ -66,6 +66,7 @@ const options = {
   transition: "Vue-Toastification__bounce",
   maxToasts: 20,
   newestOnTop: true,
+  containerClassName: "toast-card",
 };
 app.use(Toast, options);
 

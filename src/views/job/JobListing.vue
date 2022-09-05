@@ -73,7 +73,10 @@
             </button>
           </div>
 
-          <div v-if="serverResponse.data.length > 0" class="pt-0 pb-12 mx-auto max-w-7xl">
+          <div
+            v-if="serverResponse.data.length > 0"
+            class="pt-0 pb-12 mx-auto max-w-7xl"
+          >
             <div class="w-full">
               <div class="flex items-center justify-between px-4 py-4 bg-white border border-gray-200 rounded-lg shadow-lg sm:px-6">
                 <div class="flex justify-between flex-1 sm:hidden">
@@ -110,22 +113,40 @@
                   </div>
                   <div>
                     <nav
-                      :key="link"
+                      class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
                       aria-label="Pagination"
-                      v-for="link in serverResponse.links"
-                      class="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
                     >
                       <a
-                        @click="navigateTo(link.url)"
-                        :disabled="link.url === null || loading"
-                        :class="
-                    link.active
-                      ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
-                      : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                  "
-                        class="relative inline-flex items-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-50"
+                        @click="navigateTo(serverResponse.prev_page_url)"
+                        class="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
-                        {{ formatLabel(link.label) }}
+                        <span class="sr-only">Previous</span>
+                        <ChevronLeftIcon
+                          class="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </a>
+                      <template
+                        :key="index"
+                        v-for="(link, index) in serverResponse.links"
+                      >
+                        <a
+                          v-if="!link.label.includes('Prev') && !link.label.includes('Next')"
+                          @click="navigateTo(link.url)"
+                          aria-current="page"
+                          :class="link.active?'bg-indigo-50 border-indigo-500 text-indigo-600':' bg-indigo-50 border-indigo-500 text-indigo-600'"
+                          class="z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer"
+                        > {{ link.label }} </a>
+                      </template>
+                      <a
+                        @click="navigateTo(serverResponse.next_page_url)"
+                        class="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                      >
+                        <span class="sr-only">Next</span>
+                        <ChevronRightIcon
+                          class="h-5 w-5"
+                          aria-hidden="true"
+                        />
                       </a>
                     </nav>
                   </div>
@@ -136,12 +157,11 @@
         </div>
       </div>
     </div>
-
   </main>
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
-// import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/solid";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/solid";
 import JobsService from "../../service/jobs.service";
 import JobListItem from "../../components/jobs/JobListItem.vue";
 
@@ -167,18 +187,6 @@ const serverResponse = ref({
 const searchForm = ref({
   keyword: "",
 });
-
-function formatLabel(label) {
-  if (label.includes("Prev")) {
-    return `<< Previous`;
-  }
-
-  if (label.includes("Next")) {
-    return "Next >>";
-  }
-
-  return label;
-}
 
 function onSearchChange(value) {
   if (value.length > 3) {

@@ -1,20 +1,10 @@
-
 <template>
   <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <svg
-        class="mx-auto shrink-0 h-16 w-16 text-indigo-300"
-        viewBox="0 0 24 24"
+      <img
+        src="../../assets/images/logo.png"
+        class="w-3/6 mx-auto"
       >
-        <path
-          class="fill-current text-indigo-200"
-          d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
-        ></path>
-        <path
-          class="fill-current text-indigo-400"
-          d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
-        ></path>
-      </svg>
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -46,6 +36,7 @@ const toast = useToast();
 const route = useRoute();
 const router = useRouter();
 
+// eslint-disable-next-line no-unused-vars
 const { candidate } = storeToRefs(useSignup());
 const loading = ref(false);
 
