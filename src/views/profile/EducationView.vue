@@ -14,7 +14,7 @@
       <li
         v-for="education in userEducation"
         :key="education.id"
-        class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow"
+        class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow-lg"
       >
         <div class="flex items-center justify-between w-full p-6 space-x-6">
           <div class="flex-1 truncate">
@@ -22,20 +22,12 @@
             <p class="mt-1 text-sm text-gray-500 truncate">{{ education.education_level.name }}</p>
             <div class="flex items-center space-x-3">
               <p class="mt-1 text-sm text-gray-500 truncate">{{ education.field }}</p>
-              <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ education.degree_classification }}</span>
+              <span class="flex-shrink-0 inline-block px-4 py-1 text-indigo-800 text-xs font-medium bg-indigo-100 rounded-full">{{ education.degree_classification }}</span>
             </div>
 
             <p class="mt-1 text-sm text-gray-500 truncate"><i class="mr-1 fa-regular fa-calendar-check"></i>{{FormatMonthYear(education.start_date)}} - {{FormatMonthYear(education.end_date)}}</p>
           </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="flex-shrink-0 w-10 h-10 rounded-full bi bi-mortarboard"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z" />
-            <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z" />
-          </svg>
+          <img class="flex-shrink-0 w-12 h-12" src="../../assets/images/education.png"/>
         </div>
         <div>
           <div class="flex -mt-px divide-x divide-gray-200">
@@ -222,6 +214,7 @@
                               class="block text-sm font-medium text-gray-700"
                             >Start Date</label>
                             <Datepicker
+                              autoApply
                               v-model="education.start_date"
                               :format="format"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -241,6 +234,7 @@
                               class="block text-sm font-medium text-gray-700"
                             >End Date</label>
                             <Datepicker
+                              autoApply
                               v-model="education.end_date"
                               :format="format"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

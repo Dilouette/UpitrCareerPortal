@@ -11,7 +11,7 @@
         <div class="mt-1 w-9 h-9 shrink-0">
           <img
             class="rounded-full w-9 h-9"
-            src="../../assets/images/rainoil-icon.png"
+            src="../../assets/images/icon.png"
             width="36"
             height="36"
             :alt="'Rainoil ' + item.assesment.job.title"
@@ -21,6 +21,8 @@
           <h3 class="inline-flex mb-2 text-lg font-semibold text-slate-800">
             {{ item.assesment.job.title }}
           </h3>
+
+          <div class="text-sm text-slate-500 font-semibold italic whitespace-nowrap mb-2"><i class="fa-solid fa-calendar-day mr-1"></i> Deadline <timeago :datetime="item.assesment.deadline"/></div>
           <div v-html="item.assesment.job.description" class="text-sm"></div>
           <div class="mt-4 text-sm">
             <span class="font-bold"
@@ -42,16 +44,10 @@
               {{ item.assesment.job.city.region.country.name }}</span
             >
           </div>
-          <div class="mt-4 text-md">
-            <span class="text-blue-700"
-              >Due date: {{ FormatLongDate(item.assesment.deadline) }}</span
-            >
-            <i class="font-bold"></i>
-          </div>
           <div v-if="item.status_id === 2" class="mt-4 text-md">
             <span 
-              :class="item.is_passed ? 'text-indigo-800 bg-indigo-100' : 'text-red-800 bg-red-100'"
-              class="inline-flex px-4 leading-5 rounded-full">{{ item.is_passed ? "Pass" : "Fail" }}
+              :class="item.is_passed ? 'text-green-800 bg-green-100' : 'text-red-800 bg-red-100'"
+              class="inline-flex px-4 py-1.5 leading-5 rounded-full">{{ item.is_passed ? "Assesment Passed" : "Assesment Failed" }}
             </span>
           </div>
         </div>
@@ -74,7 +70,6 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { FormatLongDate } from "../../util/Formatter";
 import { useAssessment } from "../../stores/assessment";
 
 const props = defineProps({

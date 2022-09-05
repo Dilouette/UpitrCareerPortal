@@ -4,7 +4,7 @@
           <!-- Left side -->
           <div class="flex items-start space-x-3 md:space-x-4">
               <div class="w-9 h-9 shrink-0 mt-1">
-                  <img class="w-9 h-9 rounded-full" src="../../assets/images/rainoil-icon.png" width="36" height="36" :alt="'Rainoil ' + item.title" />
+                  <img class="w-9 h-9 rounded-full" src="../../assets/images/icon.png" width="36" height="36" :alt="'Rainoil ' + item.title" />
               </div>
               <div>
                   <h3 class="inline-flex text-lg font-semibold text-slate-800 mb-2">{{ item.title }}</h3>

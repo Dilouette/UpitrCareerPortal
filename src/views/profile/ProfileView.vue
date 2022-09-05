@@ -1,6 +1,6 @@
 <template>
   <main class="flex-1 pb-8">
-    <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-6">
+    <div class="px-4 py-12 mx-auto max-w-9xl sm:px-6 lg:px-6">
       <div class="w-full">
         <div class="mb-12 lg:border-t lg:border-b lg:border-gray-200">
           <nav class="mx-auto" aria-label="Progress">
@@ -124,7 +124,7 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
+                    <div class="space-y-6 bg-white px-10 py-10">
                       <div>
                         <label class="block text-sm font-medium text-gray-700">
                           Photo
@@ -229,6 +229,7 @@
                             <Datepicker
                               v-model="candidate.dob"
                               :format="format"
+                              autoApply
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                             </Datepicker>
@@ -336,7 +337,7 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
+                    <div class="space-y-6 bg-white px-10 py-10">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-3">
@@ -456,7 +457,7 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 space-y-6 bg-white sm:p-6">
+                    <div class="space-y-6 bg-white px-10 py-10">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-6">
@@ -477,10 +478,6 @@
                               class="block text-sm font-medium text-gray-700"
                               >Skills</label
                             >
-                            <!-- <TagInput
-                              @on-tags-changed="skillsChange"
-                              :tags="candidate.skills"
-                            ></TagInput> -->
                             <MultiSelect
                               searchable
                               mode="tags"
