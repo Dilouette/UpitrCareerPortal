@@ -67,14 +67,20 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { required, email } from '@vuelidate/validators';
 import useVuelidate from '@vuelidate/core';
-
+import { useMessage } from "../../stores/message";
+import { useProfile } from "../../stores/profile";
+import { useMiscellaneous } from "../../stores/miscellaneous";
 import { useAuthentication } from "../../stores/authentication";
 import AuthService from "../../service/authentication.service";
+
+const messageStore = useMessage();
+const profileStore = useProfile();
+const miscStore = useMiscellaneous();
 
 const signinForm = ref({
   email: '',
@@ -95,6 +101,26 @@ const v$ = useVuelidate(rules, signinForm)
 
 const { setAuthInfo } = useAuthentication();
 
+function fetchGeneralData () {
+    miscStore.fetchCountries();
+    miscStore.fetchCurrencies();
+    miscStore.fetchIndustries();
+    miscStore.fetchDesignations();
+    miscStore.fetchJobFunctions();
+    miscStore.fetchActivityType();
+    miscStore.fetchQuestionTypes();
+    miscStore.fetchEmploymentTypes();
+    miscStore.fetchEducationLevels();
+    miscStore.fetchExperienceLevels();
+    miscStore.fetchActivityRelations();
+    miscStore.fetchActivityImportance();
+    miscStore.fetchDegreeClassification();
+
+    profileStore.fetchEducation();
+    profileStore.fetchExperience();
+    messageStore.fetchMessages();
+}
+
 async function signin() {
   const valid = await v$.value.$validate();
 
@@ -104,6 +130,7 @@ async function signin() {
       const { data } = result.data;
       setAuthInfo(data);
       toast.success('Login successful');
+      fetchGeneralData();
       router.push('/dashboard');
     }).catch((error) => {
       if (error.status === 401) {

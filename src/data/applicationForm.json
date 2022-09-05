@@ -127,26 +127,5 @@
                 ]
             }
         ]
-    },
-    {
-        "sectionName": "Details",
-        "description": "",
-        "fields": [
-            {
-                "name": "Cover Letter",                             
-                "model": "coverLetter",
-                "options": [
-                    {
-                        "optionName": "Mandatory"
-                    },
-                    {
-                        "optionName": "Optional"
-                    },
-                    {
-                        "optionName": "Off"
-                    }
-                ]
-            }
-        ]
     }
 ]
