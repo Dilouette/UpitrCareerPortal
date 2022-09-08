@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+import HomeView from "../views/HomeView.vue";
+
 import JobListView from "../views/job/JobListing.vue";
 import JobDetailView from "../views/job/DetailView.vue";
 import AppliedListView from "../views/job/AppliedListView.vue";
@@ -43,7 +46,7 @@ const router = createRouter({
             pageTitle: "Jobs",
             requiresAuth: false,
           },
-          component: JobListView,
+          component: HomeView,
         },
         {
           name: "JobDetail",
