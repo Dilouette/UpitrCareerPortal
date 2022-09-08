@@ -2,6 +2,18 @@
   <main class="flex-1 pb-8">
     <div class="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="w-full">
+        <div class="mx-auto md:flex md:items-center md:justify-between lg:max-w-9xl ">
+          <div class="flex items-center space-x-5">
+
+          </div>
+          <div class="flex flex-col-reverse mt-6 mb-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 md:mt-0 md:flex-row">
+            <router-link
+              class="inline-flex items-center justify-center py-2 px-6 rounded-full text-sm font-medium text-white bg-indigo-600 border border-transparent shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+              :to="`/dashboard`"
+            >My Account</router-link>
+          </div>
+        </div>
+
         <div class="mb-5">
           <form class="relative">
             <label
