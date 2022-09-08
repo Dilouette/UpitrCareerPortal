@@ -3,10 +3,7 @@ import TokenService from "./token.service";
 
 const CoreService = {
   init() {
-    // axios.defaults.baseURL = "http://localhost:8000/api/v1/career-portal";
-    // axios.defaults.baseURL = "https://upitr.herokuapp.com/api/v1/career-portal";
-    axios.defaults.baseURL = "https://ats-api.rainoil.com.ng/api/v1/career-portal";
-
+    axios.defaults.baseURL = import.meta.env.VITE_API_URL;
     axios.defaults.headers.common.Accept = "application/json";
 
     axios.interceptors.request.use(
