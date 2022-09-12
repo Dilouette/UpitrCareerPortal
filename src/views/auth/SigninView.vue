@@ -72,6 +72,7 @@ import { ref } from 'vue';
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { required, email } from '@vuelidate/validators';
+import LogRocket from 'logrocket';
 import useVuelidate from '@vuelidate/core';
 import { useMessage } from "../../stores/message";
 import { useProfile } from "../../stores/profile";
@@ -130,8 +131,10 @@ async function signin() {
     AuthService.signIn(signinForm.value).then(result => {
       const { data } = result.data;
       setAuthInfo(data);
+      console.log(data);
       toast.success('Login successful');
       fetchGeneralData();
+      LogRocket.identify(data.user.email, {name: `${data.user.firstname}, ${data.user.middlename} ${data.user.lastname}`});
       router.push('/dashboard');
     }).catch((error) => {
       if (error.status === 401) {

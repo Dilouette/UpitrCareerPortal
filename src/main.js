@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createPinia, storeToRefs } from "pinia";
 import { vue3Debounce } from "vue-debounce";
+import LogRocket from 'logrocket';
 import VueCountdown from "@chenfengyuan/vue-countdown";
 import Toast from "vue-toastification";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
@@ -75,6 +76,11 @@ const timeagoOptions = {
     includeSeconds: false,
   },
 };
+
+if (process.env.NODE_ENV === 'production') {
+  LogRocket.init('ywnzvp/p2p-k64wr');
+}
+
 app.use(timeago, timeagoOptions);
 
 app.component("SideBar", SideBar);
