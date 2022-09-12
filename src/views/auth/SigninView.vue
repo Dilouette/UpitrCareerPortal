@@ -131,10 +131,13 @@ async function signin() {
     AuthService.signIn(signinForm.value).then(result => {
       const { data } = result.data;
       setAuthInfo(data);
-      console.log(data);
       toast.success('Login successful');
       fetchGeneralData();
-      LogRocket.identify(data.user.email, {name: `${data.user.firstname}, ${data.user.middlename} ${data.user.lastname}`});
+      try {
+        LogRocket.identify(data.user.email, {name: `${data.user.firstname}, ${data.user.middlename} ${data.user.lastname}`});
+      } catch (error) {
+        // log error
+      }
       router.push('/dashboard');
     }).catch((error) => {
       if (error.status === 401) {
