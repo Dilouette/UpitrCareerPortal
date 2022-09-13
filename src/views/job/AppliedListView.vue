@@ -1,7 +1,7 @@
 <template>
   <main class="flex-1 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="w-full">
+      <div v-if="applications.data.length > 0" class="w-full">
         <div class="mb-5">
           <form class="relative">
             <label
@@ -31,10 +31,7 @@
           </form>
         </div>
 
-        <div
-          v-if="loading"
-          class="space-y-4"
-        >
+        <div v-if="loading" class="space-y-4">
           <list-skeleton
             class="shadow-lg rounded-lg border px-5 py-4"
             :class="'bg-white border-slate-200'"
@@ -57,7 +54,25 @@
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12">
+    <div v-if="serverResponse.data.length == 0">
+      <button
+        type="button"
+        class="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="mx-auto h-12 w-12 text-gray-400"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+          <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+        </svg>
+        <span class="mt-2 block text-sm font-medium text-gray-900"> There are no job vacancies at the moment.</span>
+      </button>
+    </div>
+
+    <div v-if="applications.data.length > 0" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12">
       <div class="w-full">
         <div class="bg-white px-4 py-4 flex items-center shadow-lg rounded-lg justify-between border border-gray-200 sm:px-6">
           <div class="flex-1 flex justify-between sm:hidden">
