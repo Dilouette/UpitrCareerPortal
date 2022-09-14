@@ -2,7 +2,7 @@
   <main class="flex-1 pb-8">
     <div class="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="w-full">
-        <div class="mb-5">
+        <div v-if="serverResponse.data.length > 0" class="mb-5">
           <form class="relative">
             <label
               for="job-search"
@@ -46,7 +46,7 @@
         </div>
 
         <div
-          v-if="!loading"
+          v-if="!loading && serverResponse.data.length > 0"
           class="space-y-4"
         >
           <JobListItem
@@ -73,10 +73,7 @@
             </button>
           </div>
 
-          <div
-            v-if="serverResponse.data.length > 0"
-            class="pt-0 pb-12 mx-auto max-w-7xl"
-          >
+          <div v-if="serverResponse.data.length > 0" class="pt-0 pb-12 mx-auto max-w-7xl">
             <div class="w-full">
               <div class="flex items-center justify-between px-4 py-4 bg-white border border-gray-200 rounded-lg shadow-lg sm:px-6">
                 <div class="flex justify-between flex-1 sm:hidden">
