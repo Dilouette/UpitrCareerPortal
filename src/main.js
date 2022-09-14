@@ -77,7 +77,7 @@ const timeagoOptions = {
   },
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.MODE === 'production') {
   LogRocket.init('ywnzvp/p2p-k64wr');
 }
 
