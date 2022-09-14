@@ -78,7 +78,7 @@ const timeagoOptions = {
 };
 
 if (import.meta.env.MODE === 'production') {
-  LogRocket.init('ywnzvp/p2p-k64wr');
+  LogRocket.init('cpolan/upitr-career-portal');
 }
 
 app.use(timeago, timeagoOptions);

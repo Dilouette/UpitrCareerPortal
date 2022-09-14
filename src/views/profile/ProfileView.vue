@@ -296,14 +296,20 @@
                           </div>
 
                           <div class="col-span-6">
-                            <label
-                              for="street-address"
-                              class="block text-sm font-medium text-gray-700"
-                              >Summary</label
-                            >
+                            <div class="flex justify-between">
+                              <label
+                                for="summary"
+                                class="block text-sm font-medium text-gray-700"
+                                >Summary</label
+                              >
+                              <span class="text-sm text-gray-500" id="summary">{{candidate.summary.length}}/{{summaryMax}}</span>
+                            </div>
                             <textarea
+                              id="summary"
+                              name="summary"
                               v-model="candidate.summary"
                               rows="5"
+                              :class="candidate.summary.length > summaryMax ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             ></textarea>
                           </div>
@@ -590,6 +596,7 @@ import ExperienceView from "./ExperienceView.vue";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import { FormatDate } from "../../util/Formatter";
+import { getErrorMessage } from "../../util/ServerUtil";
 
 const tabs = [
   {
@@ -619,11 +626,11 @@ var tabIndex = ref(0);
 
 const { countries, industries, jobFunctions } = storeToRefs(useMiscellaneous());
 
+const summaryMax = 512;
 const toast = useToast();
 const regions = ref([]);
 const cities = ref([]);
 const skills = ref([]);
-
 const processing = ref(false);
 const fetchingRegions = ref(false);
 const fetchingCities = ref(false);
@@ -690,6 +697,12 @@ async function updateProfile() {
     toast.error("All fields are required. Please enter missing fields");
     return;
   }
+
+  if (candidate.value.summary.length > summaryMax) {
+    toast.error("Summary must not be greater than 512 characters");
+    return;
+  }
+
   if (valid) {
     candidate.value.dob = FormatDate(candidate.value.dob, "YYYY-MM-DD");
     if (skills.value.length > 0) {
@@ -708,8 +721,9 @@ async function updateProfile() {
         fetchUserProfile();
         toast.success("Profile successfully updated");
       })
-      .catch(() => {
-        toast.error("An error occurred");
+      .catch((error) => {
+        const { data } = error;
+        toast.error(getErrorMessage(data));
       })
       .finally(() => {
         processing.value = false;
