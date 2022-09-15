@@ -74,7 +74,7 @@ import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { required, email } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-
+import { getErrorMessage } from "../../util/ServerUtil";
 import AuthService from "../../service/authentication.service";
 
 const formData = ref({
@@ -106,7 +106,9 @@ async function onSubmit() {
           toast.error("Email does not exist");
           return;
         }
-        toast.error("Something went wrong, please try again later");
+
+        const { data } = error;
+        toast.error(getErrorMessage(data));
       })
       .finally(() => {
         loading.value = false;

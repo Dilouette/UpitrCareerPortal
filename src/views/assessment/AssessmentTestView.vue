@@ -70,10 +70,8 @@ import { useToast } from "vue-toastification";
 import { storeToRefs } from "pinia";
 import AssessmentService from "../../service/assessment.service";
 import { useAssessment } from "../../stores/assessment";
+import { getErrorMessage } from "../../util/ServerUtil";
 
-// const props = defineProps({
-//   id: String,
-// });
 
 const { assessmentInfo } = storeToRefs(useAssessment());
 
@@ -107,7 +105,8 @@ function onTimerEnd() {
         }
       });
     }).catch((error) => {
-      console.log(error);
+      const { data } = error;
+      toast.error(getErrorMessage(data));
     }).finally(() => {
       // submitting.value = false;
     })
@@ -138,7 +137,7 @@ function nextQuestion() {
     questionCount.value = questionCount.value + 1;
   }).catch((error) => {
     const { data } = error;
-    toast.error(data.message);
+    toast.error(getErrorMessage(data));
   })
   .finally(() => {
     submitting.value = false;
@@ -159,7 +158,8 @@ function completeAssessment() {
         }
       });
     }).catch((error) => {
-      console.log(error);
+      const { data } = error;
+      toast.error(getErrorMessage(data));
     }).finally(() => {
       // submitting.value = false;
     })
@@ -173,7 +173,7 @@ onMounted(() => {
     questionCount.value = questionCount.value + 1;
   }).catch((error) => {
     const { data } = error;
-    toast.error(data.message);
+    toast.error(getErrorMessage(data));
   })
   .finally(() => {
     loading.value = false;

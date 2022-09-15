@@ -30,6 +30,7 @@ import { useRouter, useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useSignup } from "../../stores/signup";
 import { useToast } from "vue-toastification";
+import { getErrorMessage } from "../../util/ServerUtil";
 import AuthService from "../../service/authentication.service";
 
 const toast = useToast();
@@ -50,12 +51,12 @@ async function emailConfirmation() {
 
   AuthService.confirmation(payload)
     .then(() => {      
-      router.push("/signin");
       toast.success("Your email has been confirmed successfully! Please login to continue.");
+      router.push("/signin");
     })
     .catch((error) => {
       const { data } = error;
-      toast.error(data.message);
+      toast.error(getErrorMessage(data));
     })
     .finally(() => {
       loading.value = false;

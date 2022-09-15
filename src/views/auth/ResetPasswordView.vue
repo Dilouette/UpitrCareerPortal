@@ -108,7 +108,7 @@ import {
   minLength,
 } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-
+import { getErrorMessage } from "../../util/ServerUtil";
 import AuthService from "../../service/authentication.service";
 
 const swal = inject("$swal");
@@ -158,19 +158,6 @@ const toast = useToast();
 const router = useRouter();
 const v$ = useVuelidate(rules, formData);
 
-function showErrorMessages(errors) {
-  var errorMessage = "";
-  Object.keys(errors).forEach((key) => {
-    errorMessage += `${errors[key][0]}\n`;
-  });
-
-  swal({
-    title: "Invalid Data",
-    text: errorMessage,
-    icon: "error",
-  });
-}
-
 async function signin() {
   const valid = await v$.value.$validate();
   if (valid) {
@@ -195,11 +182,12 @@ async function signin() {
           return;
         }
 
-        if (data.code === "062") {
-          showErrorMessages(data.data);
-          return;
-        }
-        toast.error("Something went wrong, try again later");
+        const errorMessage = getErrorMessage(data);
+        swal({
+          title: "Error",
+          text: errorMessage,
+          icon: "error",
+        });
       })
       .finally(() => {
         loading.value = false;

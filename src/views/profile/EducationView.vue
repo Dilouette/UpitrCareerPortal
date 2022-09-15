@@ -282,10 +282,7 @@ import { useToast } from "vue-toastification";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import Swal from "sweetalert2";
-import { useProfile } from "../../stores/profile";
-import { useMiscellaneous } from "../../stores/miscellaneous";
-import EducationService from "../../service/education.service";
-import { FormatMonthYear } from "../../sourcery/formatters";
+import { TrashIcon, PencilAltIcon } from "@heroicons/vue/solid";
 import {
   Dialog,
   DialogPanel,
@@ -293,11 +290,13 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-
-import { TrashIcon, PencilAltIcon } from "@heroicons/vue/solid";
-
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import { useProfile } from "../../stores/profile";
+import { useMiscellaneous } from "../../stores/miscellaneous";
+import EducationService from "../../service/education.service";
+import { getErrorMessage } from "../../util/ServerUtil";
+import { FormatMonthYear } from "../../sourcery/formatters";
 
 const profileStore = useProfile();
 const { educationLevels, degreeClassifications } = storeToRefs(
@@ -375,9 +374,9 @@ async function addEducation() {
         open.value = false;
         v$.value.$reset();
       })
-      .catch((err) => {
-        console.log(err);
-        toast.error("An unexpected exception occured");
+      .catch((error) => {
+        const { data } = error;
+        toast.error(getErrorMessage(data));
       })
       .finally(() => {
         processing.value = false;
@@ -406,9 +405,9 @@ async function updateEducation() {
         getUserEducation();
         open.value = false;
       })
-      .catch((err) => {
-        console.log(err);
-        toast.error("An unexpected exception occured");
+      .catch((error) => {
+        const { data } = error;
+        toast.error(getErrorMessage(data));
       })
       .finally(() => {
         processing.value = false;
@@ -460,11 +459,9 @@ function initDelete(id) {
             "Education successfully deleted"
           );
         })
-        .catch((err) => {
-          console.log(err);
-          toast.error(
-            "Could not fetch your education details at the moment please referesh page"
-          );
+        .catch((error) => {
+          const { data } = error;
+          toast.error(getErrorMessage(data));
         })
         .finally(() => {
           fetching.value = false;
@@ -481,11 +478,9 @@ async function getUserEducation() {
       userEducation.value = data;
       profileStore.updateEducation(data);
     })
-    .catch((err) => {
-      console.log(err);
-      toast.error(
-        "Could not fetch your education details at the moment please refresh page"
-      );
+    .catch((error) => {
+      const { data } = error;
+      toast.error(getErrorMessage(data));
     })
     .finally(() => {
       fetching.value = false;
