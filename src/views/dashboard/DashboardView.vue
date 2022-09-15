@@ -76,12 +76,48 @@
     </main>
 </template>
 <script setup>
-//import { ref } from "vue";
+import { onMounted } from "vue";
+import Swal from "sweetalert2";
+import { useRouter } from "vue-router";
 import {
   UserCircleIcon,
 } from "@heroicons/vue/solid";
-import { useAuthentication } from "@/stores/authentication.js";
+import { storeToRefs } from "pinia";
+import { useProfile } from "../../stores/profile";
+import { useAuthentication } from "@/stores/authentication";
 
 const { userInfo } = useAuthentication();
+const { education, experiences } = storeToRefs(useProfile());
+
+const router = useRouter();
+
+onMounted(() => {
+  const requiredFields = [];
+  const {industry, job_function, dob, city, phone, skills, years_of_experience} = userInfo;
+  if (education.value.length === 0) requiredFields.push('Education');
+  if (experiences.value.length === 0) requiredFields.push('Experiences');
+  if (industry === null)  requiredFields.push('Industry');
+  if (job_function === null) requiredFields.push('Job Function');
+  if (dob === null || dob === "") requiredFields.push('Date of Birth');
+  if (city === null) requiredFields.push('City');
+  if (phone === null || phone === "") requiredFields.push('Phone Nu.');
+  if (skills === null || skills === "") requiredFields.push('Skills');
+  if (years_of_experience === null || years_of_experience === "") requiredFields.push('Years of experience');
+
+  if (requiredFields.length > 0) {
+    let errorMessage = `Kindly update your ${requiredFields.join(', ')}`;
+    Swal.fire({
+      title: "Profile Update",
+      text: errorMessage,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: 'Go to Profile'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push({ name: "Profile" });
+      }
+    });
+  }
+})
 
 </script>

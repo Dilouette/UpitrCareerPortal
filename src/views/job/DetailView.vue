@@ -318,7 +318,7 @@
 </template>
 
 <script setup>
-import { reactive, computed, onMounted, ref, inject } from "vue";
+import { reactive, computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import {
   CurrencyDollarIcon,
@@ -353,7 +353,6 @@ const props = defineProps({
 
 const toast = useToast();
 const router = useRouter();
-const swal = inject("$swal");
 
 const { education, experiences } = storeToRefs(useProfile());
 const { userInfo } = storeToRefs(useAuthentication());
@@ -398,7 +397,7 @@ function initApply() {
 
   if (requiredFields.length > 0) {
     let errorMessage = `Kindly update your ${requiredFields.join(', ')}, before applying for this job`;
-    swal({
+    Swal.fire({
       title: "Profile Update",
       text: errorMessage,
       icon: "info",

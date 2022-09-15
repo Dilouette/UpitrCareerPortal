@@ -302,14 +302,22 @@
                                 class="block text-sm font-medium text-gray-700"
                                 >Summary</label
                               >
-                              <span class="text-sm text-gray-500" id="summary">{{candidate.summary.length}}/{{summaryMax}}</span>
+                              <span class="text-sm text-gray-500" id="summary"
+                                >{{ summaryCount }}/{{
+                                  summaryMax
+                                }}</span
+                              >
                             </div>
                             <textarea
                               id="summary"
                               name="summary"
                               v-model="candidate.summary"
                               rows="5"
-                              :class="candidate.summary.length > summaryMax ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''"
+                              :class="
+                                summaryCount > summaryMax
+                                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                  : ''
+                              "
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             ></textarea>
                           </div>
@@ -598,6 +606,8 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import { FormatDate } from "../../util/Formatter";
 import { getErrorMessage } from "../../util/ServerUtil";
 
+const toast = useToast();
+
 const tabs = [
   {
     id: "01",
@@ -622,15 +632,14 @@ const tabs = [
   },
 ];
 
-var tabIndex = ref(0);
-
 const { countries, industries, jobFunctions } = storeToRefs(useMiscellaneous());
 
 const summaryMax = 512;
-const toast = useToast();
-const regions = ref([]);
-const cities = ref([]);
+const tabIndex = ref(0);
+const summaryCount = ref(0);
 const skills = ref([]);
+const cities = ref([]);
+const regions = ref([]);
 const processing = ref(false);
 const fetchingRegions = ref(false);
 const fetchingCities = ref(false);
@@ -736,30 +745,41 @@ function changeTab(index) {
 }
 
 function setProfileDetails() {
-  candidate.value.firstname = userInfo.value.firstname;
-  candidate.value.middlename = userInfo.value.middlename;
-  candidate.value.lastname = userInfo.value.lastname;
-  candidate.value.dob = userInfo.value.dob;
-  candidate.value.phone = userInfo.value.phone;
-  candidate.value.headline = userInfo.value.headline || "";
-  candidate.value.gender_id = userInfo.value.gender_id;
-  candidate.value.country_id =
-    userInfo.value.city != null ? userInfo.value.city.region.country.id : null;
-  candidate.value.region_id =
-    userInfo.value.city != null ? userInfo.value.city.region.id : null;
-  candidate.value.city_id =
-    userInfo.value.city != null ? userInfo.value.city.id : null;
-  candidate.value.zip_code = userInfo.value.zip_code;
-  candidate.value.address = userInfo.value.address;
-  candidate.value.summary = userInfo.value.summary;
-  candidate.value.skills =
-    userInfo.value.skills !== null ? userInfo.value.skills.split(",") : [];
-  candidate.value.industry_id =
-    userInfo.value.industry != null ? userInfo.value.industry.id : null;
-  candidate.value.job_function_id =
-    userInfo.value.job_function != null ? userInfo.value.job_function.id : null;
-  candidate.value.years_of_experience = userInfo.value.years_of_experience;
-  skills.value = candidate.value.skills
+  try {
+    candidate.value.firstname = userInfo.value.firstname;
+    candidate.value.middlename = userInfo.value.middlename;
+    candidate.value.lastname = userInfo.value.lastname;
+    candidate.value.dob = userInfo.value.dob;
+    candidate.value.phone = userInfo.value.phone;
+    candidate.value.headline = userInfo.value.headline || "";
+    candidate.value.gender_id = userInfo.value.gender_id;
+    candidate.value.country_id =
+      userInfo.value.city != null
+        ? userInfo.value.city.region.country.id
+        : null;
+    candidate.value.region_id =
+      userInfo.value.city != null ? userInfo.value.city.region.id : null;
+    candidate.value.city_id =
+      userInfo.value.city != null ? userInfo.value.city.id : null;
+    candidate.value.zip_code = userInfo.value.zip_code;
+    candidate.value.address = userInfo.value.address;
+    candidate.value.summary = userInfo.value.summary;
+    candidate.value.skills =
+      userInfo.value.skills !== null ? userInfo.value.skills.split(",") : [];
+    candidate.value.industry_id =
+      userInfo.value.industry != null ? userInfo.value.industry.id : null;
+    candidate.value.job_function_id =
+      userInfo.value.job_function != null
+        ? userInfo.value.job_function.id
+        : null;
+    candidate.value.years_of_experience = userInfo.value.years_of_experience;
+    skills.value = candidate.value.skills;
+  } catch (error) {
+    console.log(
+      "🚀 ~ file: ProfileView.vue ~ line 765 ~ setProfileDetails ~ error",
+      error
+    );
+  }
 }
 
 onMounted(() => {
@@ -797,6 +817,14 @@ watch(
       .finally(() => {
         fetchingCities.value = false;
       });
+  }
+);
+
+watch(
+  () => candidate.value.summary,
+  (newValue) => {
+    if (newValue === null) return;
+    summaryCount.value = newValue.length;
   }
 );
 </script>
