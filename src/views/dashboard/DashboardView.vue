@@ -65,15 +65,24 @@
                   </div>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Years of experience</dt>
-                    <dd class="mt-1 text-sm" :class="userInfo.years_of_experience==null?'text-red-500':'text-gray-900'">{{ userInfo.years_of_experience ?? "Unavailable" }}</dd>
+                    <dd class="mt-1 text-sm" :class="userInfo.years_of_experience==null?'text-red-500':'text-gray-900'">
+                      <span v-if="userInfo.years_of_experience==null" class="px-2 rounded-full bg-red-100 text-red-500">Unavailable</span>   
+                      <p v-if="userInfo.years_of_experience!=null">{{ userInfo.years_of_experience }}</p>  
+                    </dd>
                   </div>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Phone</dt>
-                    <dd class="mt-1 text-sm" :class="userInfo.phone==null?'text-red-500':'text-gray-900'">{{ userInfo.phone ?? "Unavailable" }}</dd>
+                    <dd class="mt-1 text-sm" :class="userInfo.phone==null?'text-red-500':'text-gray-900'">
+                      <span v-if="userInfo.phone==null" class="px-2 rounded-full bg-red-100 text-red-500">Unavailable</span>   
+                      <p v-if="userInfo.phone!=null">{{ userInfo.phone }}</p>  
+                    </dd>
                   </div>
                   <div class="sm:col-span-2">
                     <dt class="text-sm font-medium text-gray-500">Summary</dt>
-                    <dd class="mt-1 text-sm" :class="userInfo.summary==null?'text-red-500':'text-gray-900'">{{ userInfo.summary ?? "Unavailable" }}</dd>
+                    <dd class="mt-1 text-sm text-gray-900">
+                      <span v-if="userInfo.summary==null" class="px-2 rounded-full bg-red-100 text-red-500">Unavailable</span>   
+                      <p v-if="userInfo.summary!=null">{{ userInfo.summary }}</p>                  
+                    </dd>
                   </div>
                 </dl>
               </div>
@@ -117,16 +126,18 @@ const { education, experiences } = storeToRefs(useProfile());
 const requiredFields = ref([]);
 
 onMounted(() => {  
-  const {industry, job_function, dob, city, phone, skills, years_of_experience} = userInfo;
-  if (education.value.length === 0) requiredFields.value.push('Education History');
-  if (experiences.value.length === 0) requiredFields.value.push('Work Experience');
-  if (industry === null)  requiredFields.value.push('Current Industry');
-  if (job_function === null) requiredFields.value.push('Current Job Function');
+  const {industry, job_function, dob, city, phone, skills, years_of_experience, headline} = userInfo;
+
   if (dob === null || dob === "") requiredFields.value.push('Date of Birth');
   if (city === null) requiredFields.value.push('Full Address');
   if (phone === null || phone === "") requiredFields.value.push('Phone Number');
   if (skills === null || skills === "") requiredFields.value.push('Skills');
   if (years_of_experience === null || years_of_experience === "") requiredFields.value.push('Years of experience');
+  if (education.value.length === 0) requiredFields.value.push('Education History');
+  if (experiences.value.length === 0) requiredFields.value.push('Work Experience');
+  if (industry === null)  requiredFields.value.push('Current Industry');
+  if (job_function === null) requiredFields.value.push('Current Job Function');
+  if (headline === null) requiredFields.value.push('Current Job Headline');
 
   // if (requiredFields.length > 0) {
   //   let errorMessage = `Kindly update your ${requiredFields.join(', ')}`;
