@@ -1,8 +1,8 @@
 <template>
   <main class="flex-1 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div v-if="serverResponse.data.length > 0" class="w-full">
-        <!-- <div class="mb-5">
+      <!-- <div v-if="serverResponse.data.length > 0" class="w-full">
+        <div class="mb-5">
           <form class="relative">
             <label
               for="job-search"
@@ -29,8 +29,8 @@
               </svg>
             </button>
           </form>
-        </div> -->
-      </div>
+        </div>
+      </div> -->
       <div v-if="loading" class="space-y-4">
         <list-skeleton
           class="shadow-lg rounded-lg border px-5 py-4"
@@ -193,16 +193,15 @@ function navigateTo(link) {
   loading.value = true;
   // const loader = $loading.show();
   var url = `${link}&page_size=20&`;
-  Object.keys(searchForm.value).forEach((key) => {
-    if (searchForm.value[key] !== "") {
-      url += `${key}=${searchForm.value[key]}&`;
-    }
-  });
+  // Object.keys(searchForm.value).forEach((key) => {
+  //   if (searchForm.value[key] !== "") {
+  //     url += `${key}=${searchForm.value[key]}&`;
+  //   }
+  // });
 
   JobsService.getJobs(url)
     .then((res) => {
       serverResponse.value = res.data.data;
-      jobs.value = res.data.data;
     })
     .catch((error) => {
       const { data } = error;

@@ -478,7 +478,7 @@
                             <label
                               for="headline"
                               class="block text-sm font-medium text-gray-700"
-                              >Headline</label
+                              >Headline <small> Type in a skill and hit enter. To enter multiple skills</small></label
                             >
                             <input
                               type="text"
