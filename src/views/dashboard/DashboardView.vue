@@ -20,6 +20,30 @@
         </div>
       </div>
 
+      <div v-if="requiredFields.length > 0" class="px-4 mt-4 mx-auto sm:px-6 lg:max-w-9xl lg:px-8">
+        <div class="rounded-md bg-red-50 p-4 border-2 border-red-800 border-dashed">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <InformationCircleIcon class="h-5 w-5 text-red-800" aria-hidden="true" />
+            </div>
+            <div class="ml-3">
+              <h3 class="text-md font-medium text-red-800">Profile Information Not Completed</h3>
+              <div class="mt-3 text-sm text-red-700">
+                <p>You may not be able to apply to any jobs beacuse you are yet to fill some vital profile information we require. Please see the list of pending information you are required to complete.<br> Kindly click on the <b>Complete Profile</b> button to complete your profile information</p>
+                <p class="mt-4">
+                  <span class="bg-red-100 px-3 py-1 rounded-full mr-3" v-for="x in requiredFields" :key="x">{{ x }}</span>
+                </p>
+              </div>
+              <div class="mt-7 mb-2">
+                <div class="-my-1.5 flex">
+                  <a href="/account/profile" class="rounded-full bg-red-800 px-4 py-1.5 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50">Complete Profile</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+
       <div class="grid grid-cols-1 gap-6 mx-auto mt-8 sm:px-6 lg:max-w-9xl lg:grid-flow-col-dense lg:grid-cols-3">
         <div class="space-y-6 lg:col-start-1 lg:col-span-2">
           <!-- Description list-->
@@ -76,11 +100,11 @@
     </main>
 </template>
 <script setup>
-import { onMounted } from "vue";
-import Swal from "sweetalert2";
-import { useRouter } from "vue-router";
+  import { onMounted, ref } from "vue";
+//import Swal from "sweetalert2";
+//import { useRouter } from "vue-router";
 import {
-  UserCircleIcon,
+  UserCircleIcon, InformationCircleIcon
 } from "@heroicons/vue/solid";
 import { storeToRefs } from "pinia";
 import { useProfile } from "../../stores/profile";
@@ -89,35 +113,35 @@ import { useAuthentication } from "@/stores/authentication";
 const { userInfo } = useAuthentication();
 const { education, experiences } = storeToRefs(useProfile());
 
-const router = useRouter();
+//const router = useRouter();
+const requiredFields = ref([]);
 
-onMounted(() => {
-  const requiredFields = [];
+onMounted(() => {  
   const {industry, job_function, dob, city, phone, skills, years_of_experience} = userInfo;
-  if (education.value.length === 0) requiredFields.push('Education');
-  if (experiences.value.length === 0) requiredFields.push('Experiences');
-  if (industry === null)  requiredFields.push('Industry');
-  if (job_function === null) requiredFields.push('Job Function');
-  if (dob === null || dob === "") requiredFields.push('Date of Birth');
-  if (city === null) requiredFields.push('City');
-  if (phone === null || phone === "") requiredFields.push('Phone Nu.');
-  if (skills === null || skills === "") requiredFields.push('Skills');
-  if (years_of_experience === null || years_of_experience === "") requiredFields.push('Years of experience');
+  if (education.value.length === 0) requiredFields.value.push('Education History');
+  if (experiences.value.length === 0) requiredFields.value.push('Work Experience');
+  if (industry === null)  requiredFields.value.push('Current Industry');
+  if (job_function === null) requiredFields.value.push('Current Job Function');
+  if (dob === null || dob === "") requiredFields.value.push('Date of Birth');
+  if (city === null) requiredFields.value.push('Full Address');
+  if (phone === null || phone === "") requiredFields.value.push('Phone Number');
+  if (skills === null || skills === "") requiredFields.value.push('Skills');
+  if (years_of_experience === null || years_of_experience === "") requiredFields.value.push('Years of experience');
 
-  if (requiredFields.length > 0) {
-    let errorMessage = `Kindly update your ${requiredFields.join(', ')}`;
-    Swal.fire({
-      title: "Profile Update",
-      text: errorMessage,
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonText: 'Go to Profile'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        router.push({ name: "Profile" });
-      }
-    });
-  }
+  // if (requiredFields.length > 0) {
+  //   let errorMessage = `Kindly update your ${requiredFields.join(', ')}`;
+  //   Swal.fire({
+  //     title: "Profile Update",
+  //     text: errorMessage,
+  //     icon: "info",
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Go to Profile'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       router.push({ name: "Profile" });
+  //     }
+  //   });
+  // }
 })
 
 </script>
