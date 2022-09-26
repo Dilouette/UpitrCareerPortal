@@ -398,8 +398,9 @@ const props = defineProps({
 const toast = useToast();
 const router = useRouter();
 
-const { education, experiences } = storeToRefs(useProfile());
+const profileStore = useProfile();
 const { userInfo } = storeToRefs(useAuthentication());
+const { education, experiences } = storeToRefs(useProfile());
 
 const job = ref({});
 const open = ref(false);
@@ -504,7 +505,7 @@ function apply() {
         if (err.status >= 400 && err.status < 500) {
           toast.error(err.data.message);
         } else {
-          toast.error("An error occured while trying to applying for this job");
+          toast.error("An error occurred while trying to applying for this job");
         }
       });
   } else {
@@ -531,6 +532,9 @@ onMounted(() => {
         job.value = res.data.data;
       });
     }
+
+    profileStore.fetchEducation();
+    profileStore.fetchExperience();
   } catch (error) {
     // console.log(error);
   } finally {

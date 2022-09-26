@@ -22,7 +22,7 @@
             <p class="mt-1 text-sm text-gray-500 truncate">{{ education.education_level.name }}</p>
             <div class="flex items-center space-x-3">
               <p class="mt-1 text-sm text-gray-500 truncate">{{ education.field }}</p>
-              <span class="flex-shrink-0 inline-block px-4 py-1 text-indigo-800 text-xs font-medium bg-indigo-100 rounded-full">{{ education.degree_classification }}</span>
+              <span class="flex-shrink-0 inline-block px-4 py-1 text-xs font-medium text-indigo-800 bg-indigo-100 rounded-full">{{ education.degree_classification }}</span>
             </div>
 
             <p class="mt-1 text-sm text-gray-500 truncate"><i class="mr-1 fa-regular fa-calendar-check"></i>{{FormatMonthYear(education.start_date)}} - {{FormatMonthYear(education.end_date)}}</p>

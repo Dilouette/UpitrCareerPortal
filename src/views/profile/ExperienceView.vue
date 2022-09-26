@@ -16,7 +16,7 @@
       >
         <div class="flex items-center justify-between w-full p-6 space-x-6">
           <div class="flex-1 truncate">
-            <h3 class="text-md font-medium text-gray-900 truncate">
+            <h3 class="font-medium text-gray-900 truncate text-md">
               {{ experience.company }}
             </h3>
             <p class="mt-1 text-sm text-gray-500 truncate">
@@ -389,7 +389,7 @@ async function addExperience() {
     ExperienceService.create(experience.value)
       .then(() => {
         toast.success(" Work experience successfully added");
-        getuserExperience();
+        getUserExperience();
         open.value = false;
         v$.value.$reset();
       })
@@ -415,7 +415,7 @@ async function updateExperience() {
     ExperienceService.update(experience.value, experience.value.id)
       .then(() => {
         toast.success("experience successfully updated");
-        getuserExperience();
+        getUserExperience();
         open.value = false;
       })
       .catch((error) => {
@@ -467,7 +467,7 @@ function initDelete(id) {
     if (result.isConfirmed) {
       ExperienceService.delete(id)
         .then(() => {
-          getuserExperience();
+          getUserExperience();
           toast.success("Work experience successfully deleted");
         })
         .catch((error) => {
@@ -481,7 +481,7 @@ function initDelete(id) {
   });
 }
 
-async function getuserExperience() {
+async function getUserExperience() {
   fetching.value = true;
   ExperienceService.all()
     .then((res) => {
@@ -499,6 +499,6 @@ async function getuserExperience() {
 }
 
 onMounted(() => {
-  getuserExperience();
+  getUserExperience();
 });
 </script>
