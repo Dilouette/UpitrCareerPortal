@@ -3,7 +3,7 @@
     <div class="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="w-full">
         <div class="mb-5">
-          <form class="relative">
+          <!-- <form class="relative">
             <label for="job-search" class="sr-only">Search</label>
             <input
               id="job-search"
@@ -29,7 +29,7 @@
                 />
               </svg>
             </button>
-          </form>
+          </form> -->
         </div>
 
         <div v-if="loading" class="space-y-4">
@@ -55,7 +55,7 @@
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
               </svg>
-              <span class="mt-2 block text-sm font-medium text-gray-900"> There's nothing here </span>
+              <span class="mt-2 block text-sm font-medium text-gray-900"> You haven't done any assessment </span>
             </div>
           </template>
         </div>

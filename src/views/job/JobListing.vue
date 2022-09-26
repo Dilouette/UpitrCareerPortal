@@ -76,6 +76,7 @@
               v-for="job in serverResponse.data"
               :key="job.id"
               :item="job"
+              class="mb-5"
             />
             <div class="w-full">
               <div
