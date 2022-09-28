@@ -124,7 +124,7 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="space-y-6 bg-white px-10 py-10">
+                    <div class="px-10 py-10 space-y-6 bg-white">
                       <div>
                         <label class="block text-sm font-medium text-gray-700">
                           Photo
@@ -351,7 +351,7 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="space-y-6 bg-white px-10 py-10">
+                    <div class="px-10 py-10 space-y-6 bg-white">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-3">
@@ -471,14 +471,14 @@
               <div class="mt-5 md:mt-0 md:col-span-2">
                 <div>
                   <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="space-y-6 bg-white px-10 py-10">
+                    <div class="px-10 py-10 space-y-6 bg-white">
                       <div>
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-6">
                             <label
                               for="headline"
                               class="block text-sm font-medium text-gray-700"
-                              >Headline <small> Type in a skill and hit enter. To enter multiple skills</small></label
+                              >Headline</label
                             >
                             <input
                               type="text"
@@ -490,7 +490,7 @@
                             <label
                               for="country"
                               class="block text-sm font-medium text-gray-700"
-                              >Skills</label
+                              >Skills.<small> Type in a skill and hit enter. To enter multiple skills</small></label
                             >
                             <MultiSelect
                               searchable

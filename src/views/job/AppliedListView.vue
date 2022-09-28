@@ -1,39 +1,9 @@
 <template>
   <main class="flex-1 pb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <!-- <div v-if="serverResponse.data.length > 0" class="w-full">
-        <div class="mb-5">
-          <form class="relative">
-            <label
-              for="job-search"
-              class="sr-only"
-            >Search</label>
-            <input
-              id="job-search"
-              class="form-input w-full pl-9 rounded border border-gray-400 shadow-md focus:border-slate-300"
-              type="search"
-              placeholder="Search job title or keyword…"
-            />
-            <button
-              class="absolute inset-0 right-auto group"
-              type="submit"
-              aria-label="Search"
-            >
-              <svg
-                class="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2"
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
-                <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
-              </svg>
-            </button>
-          </form>
-        </div>
-      </div> -->
+    <div class="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div v-if="loading" class="space-y-4">
         <list-skeleton
-          class="shadow-lg rounded-lg border px-5 py-4"
+          class="px-5 py-4 border rounded-lg shadow-lg"
           :class="'bg-white border-slate-200'"
           v-for="n in 10"
           :key="n"
@@ -49,22 +19,22 @@
 
         <div
           v-if="serverResponse.data.length > 0"
-          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12"
+          class="pt-0 pb-12 mx-auto"
         >
           <div class="w-full">
             <div
-              class="bg-white px-4 py-4 flex items-center shadow-lg rounded-lg justify-between border border-gray-200 sm:px-6"
+              class="flex items-center justify-between px-4 py-4 bg-white border border-gray-200 rounded-lg shadow-lg sm:px-6"
             >
-              <div class="flex-1 flex justify-between sm:hidden">
+              <div class="flex justify-between flex-1 sm:hidden">
                 <a
                   href="#"
-                  class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
                 >
                   Previous
                 </a>
                 <a
                   href="#"
-                  class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
                 >
                   Next
                 </a>
@@ -76,34 +46,34 @@
                   <p class="text-sm text-gray-700">
                     Showing
                     {{ " " }}
-                    <span class="font-medium">{{ applications.from }}</span>
+                    <span class="font-medium">{{ serverResponse.from }}</span>
                     {{ " " }}
                     to
                     {{ " " }}
-                    <span class="font-medium">{{ applications.to }}</span>
+                    <span class="font-medium">{{ serverResponse.to }}</span>
                     {{ " " }}
                     of
                     {{ " " }}
-                    <span class="font-medium">{{ applications.total }}</span>
+                    <span class="font-medium">{{ serverResponse.total }}</span>
                     {{ " " }}
                     results
                   </p>
                 </div>
                 <div>
                   <nav
-                    class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                    class="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
                     aria-label="Pagination"
                   >
                     <a
-                      @click="navigateTo(applications.prev_page_url)"
-                      class="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                      @click="navigateTo(serverResponse.prev_page_url)"
+                      class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-pointer rounded-l-md hover:bg-gray-50"
                     >
                       <span class="sr-only">Previous</span>
-                      <ChevronLeftIcon class="h-5 w-5" aria-hidden="true" />
+                      <ChevronLeftIcon class="w-5 h-5" aria-hidden="true" />
                     </a>
                     <template
                       :key="index"
-                      v-for="(link, index) in applications.links"
+                      v-for="(link, index) in serverResponse.links"
                     >
                       <a
                         v-if="
@@ -117,17 +87,17 @@
                             ? 'bg-indigo-50 border-indigo-500 text-indigo-600'
                             : ' bg-indigo-50 border-indigo-500 text-indigo-600'
                         "
-                        class="z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer"
+                        class="relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium border cursor-pointer"
                       >
                         {{ link.label }}
                       </a>
                     </template>
                     <a
                       @click="navigateTo(applications.next_page_url)"
-                      class="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                      class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-pointer rounded-r-md hover:bg-gray-50"
                     >
                       <span class="sr-only">Next</span>
-                      <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
+                      <ChevronRightIcon class="w-5 h-5" aria-hidden="true" />
                     </a>
                   </nav>
                 </div>
@@ -139,11 +109,11 @@
         <div v-if="serverResponse.data.length == 0">
           <button
             type="button"
-            class="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="mx-auto h-12 w-12 text-gray-400"
+              class="w-12 h-12 mx-auto text-gray-400"
               fill="currentColor"
               viewBox="0 0 16 16"
             >
@@ -154,7 +124,7 @@
                 d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"
               />
             </svg>
-            <span class="mt-2 block text-sm font-medium text-gray-900">
+            <span class="block mt-2 text-sm font-medium text-gray-900">
               You have not applied for any job</span
             >
           </button>

@@ -20,21 +20,21 @@
         </div>
       </div>
 
-      <div v-if="requiredFields.length > 0" class="px-4 mt-4 mx-auto sm:px-6 lg:max-w-9xl lg:px-8">
-        <div class="rounded-md bg-red-50 p-4 border-2 border-red-800 border-dashed">
+      <div v-if="requiredFields.length > 0" class="px-4 mx-auto mt-4 sm:px-6 lg:max-w-9xl lg:px-8">
+        <div class="p-4 border-2 border-red-800 border-dashed rounded-md bg-red-50">
           <div class="flex">
             <div class="flex-shrink-0">
-              <InformationCircleIcon class="h-5 w-5 text-red-800" aria-hidden="true" />
+              <InformationCircleIcon class="w-5 h-5 text-red-800" aria-hidden="true" />
             </div>
             <div class="ml-3">
-              <h3 class="text-md font-medium text-red-800">Profile Information Not Completed</h3>
+              <h3 class="font-medium text-red-800 text-md">Profile Information Not Completed</h3>
               <div class="mt-3 text-sm text-red-700">
                 <p>You may not be able to apply to any jobs beacuse you are yet to fill some vital profile information we require. Please see the list of pending information you are required to complete.<br> Kindly click on the <b>Complete Profile</b> button to complete your profile information</p>
                 <p class="mt-4">
-                  <span class="bg-red-100 px-3 py-1 rounded-full mr-3" v-for="x in requiredFields" :key="x">{{ x }}</span>
+                  <span class="px-3 py-1 mr-3 bg-red-100 rounded-full" v-for="x in requiredFields" :key="x">{{ x }}</span>
                 </p>
               </div>
-              <div class="mt-7 mb-2">
+              <div class="mb-2 mt-7">
                 <div class="-my-1.5 flex">
                   <a href="/account/profile" class="rounded-full bg-red-800 px-4 py-1.5 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50">Complete Profile</a>
                 </div>
@@ -66,21 +66,21 @@
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Years of experience</dt>
                     <dd class="mt-1 text-sm" :class="userInfo.years_of_experience==null?'text-red-500':'text-gray-900'">
-                      <span v-if="userInfo.years_of_experience==null" class="px-2 rounded-full bg-red-100 text-red-500">Unavailable</span>   
+                      <span v-if="userInfo.years_of_experience==null" class="px-2 text-red-500 bg-red-100 rounded-full">Unavailable</span>   
                       <p v-if="userInfo.years_of_experience!=null">{{ userInfo.years_of_experience }}</p>  
                     </dd>
                   </div>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-gray-500">Phone</dt>
                     <dd class="mt-1 text-sm" :class="userInfo.phone==null?'text-red-500':'text-gray-900'">
-                      <span v-if="userInfo.phone==null" class="px-2 rounded-full bg-red-100 text-red-500">Unavailable</span>   
+                      <span v-if="userInfo.phone==null" class="px-2 text-red-500 bg-red-100 rounded-full">Unavailable</span>   
                       <p v-if="userInfo.phone!=null">{{ userInfo.phone }}</p>  
                     </dd>
                   </div>
                   <div class="sm:col-span-2">
                     <dt class="text-sm font-medium text-gray-500">Summary</dt>
                     <dd class="mt-1 text-sm text-gray-900">
-                      <span v-if="userInfo.summary==null" class="px-2 rounded-full bg-red-100 text-red-500">Unavailable</span>   
+                      <span v-if="userInfo.summary==null" class="px-2 text-red-500 bg-red-100 rounded-full">Unavailable</span>   
                       <p v-if="userInfo.summary!=null">{{ userInfo.summary }}</p>                  
                     </dd>
                   </div>
@@ -138,21 +138,6 @@ onMounted(() => {
   if (industry === null)  requiredFields.value.push('Current Industry');
   if (job_function === null) requiredFields.value.push('Current Job Function');
   if (headline === null) requiredFields.value.push('Current Job Headline');
-
-  // if (requiredFields.length > 0) {
-  //   let errorMessage = `Kindly update your ${requiredFields.join(', ')}`;
-  //   Swal.fire({
-  //     title: "Profile Update",
-  //     text: errorMessage,
-  //     icon: "info",
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Go to Profile'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       router.push({ name: "Profile" });
-  //     }
-  //   });
-  // }
 })
 
 </script>
