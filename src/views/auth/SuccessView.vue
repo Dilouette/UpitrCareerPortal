@@ -9,6 +9,26 @@
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Check your email
         </h2>
+        <div class="px-4 mt-4 mx-auto sm:px-6 lg:max-w-9xl lg:px-8">
+          <div class="rounded-md bg-red-50 p-4 border-2 border-red-800 border-dashed">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <InformationCircleIcon class="h-5 w-5 text-red-800" aria-hidden="true" />
+              </div>
+              <div class="ml-3">
+                <h3 class="text-md font-medium text-red-800">Important Notice!</h3>
+                <div class="mt-3 text-sm text-red-700">
+                  <p>Due to unexpected issues with our email delivery service you might not recieve a confirmation email. Please ignore the confirmation message and click on the button below to continue without confirmation for now</p>
+                </div>
+                <div class="mt-7 mb-2">
+                  <div class="-my-1.5 flex">
+                    <a href="/signin" class="rounded-full bg-red-800 px-4 py-1.5 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50">Login Without Confirmation</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <p class="mt-2 text-center text-sm text-gray-600">
           We have sent an email to {{ candidate.email }} to confirm the validity
           of the email address. Please follow the instruction in the email to

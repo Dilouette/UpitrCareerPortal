@@ -478,10 +478,11 @@
                             <label
                               for="headline"
                               class="block text-sm font-medium text-gray-700"
-                              >Headline</label
+                              >Headline <small> This is your brief professional tagline e.g. Award Winning, Transformational Business Leader and Gas Executive</small></label
                             >
                             <input
                               type="text"
+                              maxlength="255"
                               v-model="candidate.headline"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
@@ -490,7 +491,7 @@
                             <label
                               for="country"
                               class="block text-sm font-medium text-gray-700"
-                              >Skills.<small> Type in a skill and hit enter. To enter multiple skills</small></label
+                              >Skills <small> Type in a skill and hit enter. To enter multiple skills hit enter after typing each skill</small></label
                             >
                             <MultiSelect
                               searchable
