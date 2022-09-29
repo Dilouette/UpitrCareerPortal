@@ -8,7 +8,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" v-on:submit.prevent>
-          <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8">
+          <h2 class="mb-8 text-3xl font-extrabold text-center text-gray-900">
             Sign In
           </h2>
           <div>
@@ -75,7 +75,7 @@
               class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >Sign In</app-button
             >
-            <p class="text-xs text-center text-gray-600 mt-6">
+            <p class="mt-6 text-xs text-center text-gray-600">
               Don't have an account yet?
               {{ " " }}
               <a
@@ -129,6 +129,8 @@ const v$ = useVuelidate(rules, signinForm);
 const { setAuthInfo } = useAuthentication();
 
 function fetchGeneralData() {
+  messageStore.fetchMessages();
+  
   miscStore.fetchCountries();
   miscStore.fetchCurrencies();
   miscStore.fetchIndustries();
@@ -142,44 +144,43 @@ function fetchGeneralData() {
   miscStore.fetchActivityRelations();
   miscStore.fetchActivityImportance();
   miscStore.fetchDegreeClassification();
-
-  profileStore.fetchEducation();
-  profileStore.fetchExperience();
-  messageStore.fetchMessages();
 }
 
 async function signin() {
   const valid = await v$.value.$validate();
-
   if (valid) {
-    loading.value = true;
-    AuthService.signIn(signinForm.value)
-      .then((result) => {
+    try {
+      loading.value = true;
+      const result = await AuthService.signIn(signinForm.value);
+      if (result.status === 200) {
         const { data } = result.data;
         setAuthInfo(data);
-        toast.success("Login successful");
-        fetchGeneralData();
         try {
+          await profileStore.fetchEducation();
+          await profileStore.fetchExperience();
+          fetchGeneralData();
           LogRocket.identify(data.user.email, {
             name: `${data.user.firstname}, ${data.user.middlename} ${data.user.lastname}`,
           });
         } catch (error) {
-          // log error
-        }
-        router.push("/dashboard");
-      })
-      .catch((error) => {
-        if (error.status === 401) {
-          toast.error("Invalid username or password");
-          return;
+          LogRocket.captureException(error);
         }
 
-        const { data } = error;
-        toast.error(getErrorMessage(data));
-      })
-      .finally(() => {
+        toast.success("Login successful");
         loading.value = false;
-      });
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      loading.value = false;
+      if (error.status === 401) {
+        toast.error("Invalid username or password");
+        return;
+      }
+
+      const { data } = error;
+      toast.error(getErrorMessage(data));
+      LogRocket.captureException(error);
+    }
   }
 
   if (!valid) {

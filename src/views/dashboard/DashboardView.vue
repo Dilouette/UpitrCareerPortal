@@ -109,7 +109,7 @@
     </main>
 </template>
 <script setup>
-  import { onMounted, ref } from "vue";
+  import {  ref, onMounted, watch } from "vue";
 //import Swal from "sweetalert2";
 //import { useRouter } from "vue-router";
 import {
@@ -119,11 +119,31 @@ import { storeToRefs } from "pinia";
 import { useProfile } from "../../stores/profile";
 import { useAuthentication } from "@/stores/authentication";
 
+const profileStore = useProfile();
+
 const { userInfo } = useAuthentication();
-const { education, experiences } = storeToRefs(useProfile());
+const { education, experiences, educationFetched, experienceFetched } = storeToRefs(useProfile());
 
 //const router = useRouter();
 const requiredFields = ref([]);
+
+watch(() => education.value, (values) => {
+  if (values.length > 0) {
+    const indexNo = requiredFields.value.findIndex('Education History');
+    if (indexNo !== -1) requiredFields.value = requiredFields.value.splice(indexNo, 1);
+  } else {
+    requiredFields.value.push('Education History');
+  }
+});
+
+watch(() => experiences.value, (values) => {
+  if (values.length > 0) {
+    const indexNo = requiredFields.value.findIndex('Work Experience');
+    if (indexNo !== -1) requiredFields.value = requiredFields.value.splice(indexNo, 1);
+  } else {
+    requiredFields.value.push('Work Experience');
+  }
+});
 
 onMounted(() => {  
   const {industry, job_function, dob, city, phone, skills, years_of_experience, headline} = userInfo;
@@ -138,6 +158,16 @@ onMounted(() => {
   if (industry === null)  requiredFields.value.push('Current Industry');
   if (job_function === null) requiredFields.value.push('Current Job Function');
   if (headline === null) requiredFields.value.push('Current Job Headline');
+
+  (async () => {
+    if (!educationFetched) {
+      await profileStore.fetchEducation();
+    }
+
+    if (!experienceFetched) {
+      await profileStore.fetchExperience();
+    }
+  })
 })
 
 </script>

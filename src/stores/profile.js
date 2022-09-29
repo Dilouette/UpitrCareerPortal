@@ -11,6 +11,8 @@ export const useProfile = defineStore({
         experiences: [],
         fetchingEducation: false,
         fetchingExperience: false,
+        experienceFetched: false,
+        educationFetched: false,
     }),
     getters: {},
     actions: {
@@ -23,27 +25,29 @@ export const useProfile = defineStore({
         setUserInfo(payload) {
             this.userInfo = payload;
         },
-        fetchEducation() {
-            this.fetchingEducation = true;
-            EducationService.all().then(response => {
+        async fetchEducation() {
+            try {
+                this.fetchingEducation = true;
+                const response = await EducationService.all();
                 const { data } = response.data.data;
                 this.education = data;
-            }).catch(() => {
-                // log error
-            }).finally(() => {
                 this.fetchingEducation = false;
-            })
+                this.educationFetched = true;
+            } catch (error) {
+                this.fetchingEducation = false;
+            }
         },
-        fetchExperience() {
-            this.fetchingExperience = true;
-            ExperienceService.all().then(response => {
+        async fetchExperience() {
+            try {
+                this.fetchingExperience = true;
+                const response = await ExperienceService.all();
                 const { data } = response.data.data;
                 this.experiences = data;
-            }).catch(() => {
-                // log error
-            }).finally(() => {
                 this.fetchingExperience = false;
-            })
+                this.experienceFetched = true;
+            } catch (error) {
+                this.fetchingExperience = false;
+            }
         },
         updateEducation(payload) {
             this.education = payload;
