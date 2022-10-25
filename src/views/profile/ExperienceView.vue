@@ -31,7 +31,7 @@
             <p class="mt-1 text-xs text-gray-500 truncate">
               <i class="mr-1 fa-regular fa-calendar-check"></i
               >{{ FormatMonthYear(experience.start_date) }} -
-              {{ FormatMonthYear(experience.end_date) }}
+              {{ experience.is_current == true ? 'Current Employment' : FormatMonthYear(experience.end_date)}}
             </p>
           </div>
           <img
@@ -228,13 +228,28 @@
                               </div>
                             </div>
                           </div>
+
+
+                          <div class="col-span-6 sm:col-span-6">
+                            <div class="relative flex items-start">
+                              <div class="flex h-5 items-center">
+                                <input id="current" v-model="experience.is_current" aria-describedby="current-description" name="is_current" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                              </div>
+                              <div class="ml-3 text-sm">
+                                <label for="current" class="font-medium text-gray-700">Is this your current position?</label><br>
+                                <small id="current-description" class="text-gray-500">If this is not your current position please select contract end date</small>
+                              </div>
+                            </div>
+                          </div>
+
                           <div class="col-span-6 sm:col-span-3">
                             <label
-                              for="dob"
+                              for="start_date"
                               class="block text-sm font-medium text-gray-700"
                               >Start Date</label
                             >
                             <Datepicker
+                              id="start_date"
                               autoApply
                               v-model="experience.start_date"
                               :format="format"
@@ -251,19 +266,29 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-span-6 sm:col-span-3">
+                          <div class="col-span-6 sm:col-span-3" v-if="!experience.is_current">
                             <label
-                              for="dob"
+                              for="end_date"
                               class="block text-sm font-medium text-gray-700"
                               >End Date</label
                             >
                             <Datepicker
+                              id="end_date"
                               autoApply
                               v-model="experience.end_date"
                               :format="format"
                               class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                             </Datepicker>
+                            <div
+                              class="text-red-600"
+                              v-for="error of v$.end_date.$errors"
+                              :key="error.$uid"
+                            >
+                              <div class="text-xs font-bold text-red-600">
+                                {{ error.$message }}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -318,7 +343,7 @@ import {
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
-import { required, helpers } from "@vuelidate/validators";
+import { required, requiredIf, helpers } from "@vuelidate/validators";
 import { useProfile } from "../../stores/profile";
 import { useMiscellaneous } from "../../stores/miscellaneous";
 import ExperienceService from "../../service/experience.service";
@@ -352,6 +377,7 @@ const experience = ref({
   title: "",
   summary: "",
   industry_id: null,
+  is_current:false,
   start_date: "",
   end_date: "",
 });
@@ -372,6 +398,9 @@ const rules = {
   start_date: {
     required: helpers.withMessage("Start date is required", required),
   },
+  end_date: {
+    required: helpers.withMessage("End date is required if this is not your current employment", requiredIf(()=> { return experience.value.is_current==false })),
+  },
 };
 
 const v$ = useVuelidate(rules, experience);
@@ -386,6 +415,7 @@ async function addExperience() {
   }
   if (valid) {
     processing.value = true;
+    experience.value.is_current == true ?? experience.value.end_date == null;
     ExperienceService.create(experience.value)
       .then(() => {
         toast.success(" Work experience successfully added");
@@ -412,6 +442,7 @@ async function updateExperience() {
     return;
   }
   if (valid) {
+    experience.value.is_current == true ?? experience.value.end_date == null;
     ExperienceService.update(experience.value, experience.value.id)
       .then(() => {
         toast.success("experience successfully updated");
@@ -434,6 +465,7 @@ function initAdd() {
   experience.value.title = "";
   experience.value.industry_id = "";
   experience.value.summary = "";
+  experience.value.is_current = false;
   experience.value.start_date = "";
   experience.value.end_date = "";
 
@@ -447,6 +479,7 @@ function initEdit(data) {
   experience.value.title = data.title;
   experience.value.industry_id = data.industry.id;
   experience.value.summary = data.summary;
+  experience.value.is_current = data.is_current;
   experience.value.start_date = data.start_date;
   experience.value.end_date = data.end_date;
 

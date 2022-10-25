@@ -583,6 +583,10 @@
         </div>
 
         <div v-if="tabIndex == 2">
+          <certification-view></certification-view>
+        </div>
+
+        <div v-if="tabIndex == 3">
           <experience-view></experience-view>
         </div>
       </div>
@@ -601,6 +605,7 @@ import { useAuthentication } from "@/stores/authentication.js";
 import MiscService from "../../service/miscellaneous.service";
 import AccountService from "../../service/account.service";
 import EducationView from "./EducationView.vue";
+import CertificationView from "./CertificationView.vue";
 import ExperienceView from "./ExperienceView.vue";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -626,6 +631,13 @@ const tabs = [
   },
   {
     id: "03",
+    name: "Certifications",
+    description: "Professional certifications",
+    href: "#",
+    status: "upcoming",
+  },
+  {
+    id: "04",
     name: "Experiences",
     description: "Work experience",
     href: "#",
