@@ -46,10 +46,8 @@ const JobsService = {
         })
         .catch((error) => {
           if (error.response) {
-            console.error("API Error Response:", error.response); // Debugging
             reject(error.response);
           } else {
-            console.error("API Error:", error); // Debugging
             reject(new Error(error));
           }
         });
