@@ -34,17 +34,22 @@ const JobsService = {
         });
     });
   },
-  getJobs() {
+  getJobs(url = null) {
     return new Promise((resolve, reject) => {
+      // Use the provided URL or fall back to the base path
+      const requestUrl = url || `/${basePath}`;
+
       axios
-        .get(`/${basePath}`)
+        .get(requestUrl)
         .then((result) => {
           resolve(result);
         })
         .catch((error) => {
           if (error.response) {
+            console.error("API Error Response:", error.response); // Debugging
             reject(error.response);
           } else {
+            console.error("API Error:", error); // Debugging
             reject(new Error(error));
           }
         });
