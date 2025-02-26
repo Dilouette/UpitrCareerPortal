@@ -229,7 +229,8 @@ function onSearchChange(value) {
 function navigateTo(link) {
   loading.value = true;
   // const loader = $loading.show();
-  var url = `${link}&page_size=20&`;
+  // var url = `${link}&page_size=20&`;
+  var url = `${link}`;
   Object.keys(searchForm.value).forEach((key) => {
     if (searchForm.value[key] !== "") {
       url += `${key}=${searchForm.value[key]}&`;
