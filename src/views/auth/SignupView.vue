@@ -12,105 +12,56 @@
           </h2>
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label
-                for="firstname"
-                class="block text-sm font-medium text-gray-700"
-              >
+              <label for="firstname" class="block text-sm font-medium text-gray-700">
                 First name
               </label>
               <div class="mt-1">
-                <input
-                  id="firstname"
-                  name="firstname"
-                  v-model="signupForm.firstname"
-                  autocomplete="off"
-                  type="text"
+                <input id="firstname" name="firstname" v-model="signupForm.firstname" autocomplete="off" type="text"
                   placeholder="Your first name"
-                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                />
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.firstname.$errors"
-                  :key="error.$uid"
-                >
+                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full" />
+                <div class="mt-1 text-red-600" v-for="error of v$.firstname.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
             </div>
 
             <div>
-              <label
-                for="middlename"
-                class="block text-sm font-medium text-gray-700"
-              >
+              <label for="middlename" class="block text-sm font-medium text-gray-700">
                 Middle name
               </label>
               <div class="mt-1">
-                <input
-                  id="middlename"
-                  name="middlename"
-                  v-model="signupForm.middlename"
-                  autocomplete="off"
-                  type="text"                  
+                <input id="middlename" name="middlename" v-model="signupForm.middlename" autocomplete="off" type="text"
                   placeholder="Your middle name"
-                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                />
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.middlename.$errors"
-                  :key="error.$uid"
-                >
+                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full" />
+                <div class="mt-1 text-red-600" v-for="error of v$.middlename.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
             </div>
 
             <div>
-              <label
-                for="lastname"
-                class="block text-sm font-medium text-gray-700"
-              >
+              <label for="lastname" class="block text-sm font-medium text-gray-700">
                 Last name
               </label>
               <div class="mt-1">
-                <input
-                  id="lastname"
-                  name="lastname"
-                  v-model="signupForm.lastname"
-                  autocomplete="off"
-                  type="text"                  
+                <input id="lastname" name="lastname" v-model="signupForm.lastname" autocomplete="off" type="text"
                   placeholder="Your last name"
-                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                />
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.lastname.$errors"
-                  :key="error.$uid"
-                >
+                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full" />
+                <div class="mt-1 text-red-600" v-for="error of v$.lastname.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
-            </div>            
+            </div>
 
             <div>
               <label for="phone" class="block text-sm font-medium text-gray-700">
                 Phone No
               </label>
               <div class="mt-1">
-                <input
-                  id="phone"
-                  name="phone"
-                  v-model="signupForm.phone"
-                  type="text"
-                  autocomplete="off"
+                <input id="phone" name="phone" v-model="signupForm.phone" type="text" autocomplete="off"
                   placeholder="Your phone number"
-                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                />
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.phone.$errors"
-                  :key="error.$uid"
-                >
+                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full" />
+                <div class="mt-1 text-red-600" v-for="error of v$.phone.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
@@ -121,23 +72,11 @@
                 Gender
               </label>
               <div class="mt-1">
-                <MultiSelect
-                  searchable
-                  id="gender"
-                  value="id"
-                  label="name"
-                  valueProp="id"
-                  v-model="signupForm.gender_id"
-                  :options="genders"
-                  placeholder="Select your gender"
-                  class="py-3.5 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                >
+                <MultiSelect searchable id="gender" value="id" label="name" valueProp="id"
+                  v-model="signupForm.gender_id" :options="genders" placeholder="Select your gender"
+                  class="py-3.5 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full">
                 </MultiSelect>
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.gender_id.$errors"
-                  :key="error.$uid"
-                >
+                <div class="mt-1 text-red-600" v-for="error of v$.gender_id.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
@@ -148,19 +87,11 @@
                 Date of birth
               </label>
               <div class="mt-1">
-                <datepicker
-                  placeholder="Select your date of birth"
-                  @selected="selectDate"
-                  :wrapper-class="'w-full'"
-                  class="placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                >
+                <datepicker placeholder="Select your date of birth" @selected="selectDate" :wrapper-class="'w-full'"
+                  class="placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full">
                 </datepicker>
 
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.dob.$errors"
-                  :key="error.$uid"
-                >
+                <div class="mt-1 text-red-600" v-for="error of v$.dob.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
@@ -171,65 +102,48 @@
                 Email address
               </label>
               <div class="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  v-model="signupForm.email"
-                  type="email"
-                  autocomplete="off"
+                <input id="email" name="email" v-model="signupForm.email" type="email" autocomplete="off"
                   placeholder="Your email address"
-                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
-                />
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.email.$errors"
-                  :key="error.$uid"
-                >
+                  class="py-3 px-3 placeholder-slate-300 text-slate-600 relative bg-white shadow rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full" />
+                <div class="mt-1 text-red-600" v-for="error of v$.email.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
             </div>
 
             <div class="col-span-2">
-              <label
-                for="password"
-                class="block text-sm font-medium text-gray-700"
-              >
+              <label for="password" class="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <div class="mt-1">
-                <password-input
-                    v-model="signupForm.password"
-                    id="password"
-                    name="password"
-                    autocomplete="off"
-                    placeholder="Password requires an uppercase, lowercase, number, and special character"
-                  >
-                </password-input>                
-                <div
-                  class="mt-1 text-red-600"
-                  v-for="error of v$.password.$errors"
-                  :key="error.$uid"
-                >
+                <password-input v-model="signupForm.password" id="password" name="password" autocomplete="off"
+                  placeholder="Password requires an uppercase, lowercase, number, and special character">
+                </password-input>
+                <div class="mt-1 text-red-600" v-for="error of v$.password.$errors" :key="error.$uid">
                   <div class="text-xs text-red-600">{{ error.$message }}</div>
                 </div>
               </div>
             </div>
+
+            <div class="col-span-2 flex items-start">
+              <input id="terms" name="terms" v-model="signupForm.terms" type="checkbox" autocomplete="off"
+                class="mt-1 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" />
+              <label for="terms" class="ml-2 text-sm text-gray-700">
+                By signing up, you acknowledge that you have read, understood and agree to our
+                <button @click="open = true" class="text-blue-600 hover:underline">
+                  Terms and Conditions
+                </button>.
+              </label>
+</div>
           </div>
           <div>
-            <app-button
-              @click="signup"
-              :processing="loading"
-              class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >Sign Up</app-button
-            >
+            <app-button @click="signup" :processing="loading"
+              class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign
+              Up</app-button>
             <p class="mt-6 text-xs text-center text-gray-600">
               Already have an account?
               {{ " " }}
-              <a
-                href="/signin"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-              >
+              <a href="/signin" class="font-medium text-indigo-600 hover:text-indigo-500">
                 Sign In
               </a>
             </p>
@@ -238,6 +152,80 @@
       </div>
     </div>
   </div>
+
+  <TransitionRoot as="template" :show="open">
+    <Dialog as="div" class="relative z-10" @close="open = false">
+      <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
+        leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+        <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
+      </TransitionChild>
+
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
+          <TransitionChild as="template" enter="ease-out duration-300"
+            enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
+            leave-from="opacity-100 translate-y-0 sm:scale-100"
+            leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+            <DialogPanel
+              class="relative px-4 pt-5 pb-6 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-3xl sm:w-full sm:p-6">
+              <div class="w-100">
+                <div class="mt-3 text-center sm:mt-0 sm:text-left">
+                  <DialogTitle as="h4" class="px-6 text-xl font-medium leading-6 text-gray-900">
+                    Terms and Conditions
+                  </DialogTitle>
+                  <div class="mt-2">
+                    <div class="py-5 space-y-6 bg-white sm:p-6">
+                      <div>
+                        <div class="grid grid-cols-6 gap-6">
+                          <div class="col-span-6 sm:col-span-6">
+                            <label for="terms" class="block mb-2 text-sm font-medium text-gray-700">
+                              <p class="mb-4 text-base">
+                                In compliance with the Nigeria Data Protection Regulations, we require your consent
+                                before proceeding to process your data for recruitment purposes.
+                              </p>
+                              <p class="mb-4 text-base">
+                                Please confirm your acceptance of the statement below –
+                              </p>
+                              <p class="mb-4">
+                                The data collected is for the purpose of recruitment only. This may include your name,
+                                address, means of identification, email address and such other information relevant to
+                                the recruitment process. Any information that we collect in relation to the recruitment
+                                process will not be disclosed or transferred to anyone without first obtaining your
+                                consent. We will ensure the data collected is securely stored with the appropriate
+                                technical safeguards in place to protect against misuse or unauthorized access to such
+                                data.
+                              </p>
+                              <p class="mb-4">
+                                The information will be kept in our recruitment data bank for one year after the
+                                recruitment process is over and shall not be used for any purpose other than the purpose
+                                for which it was collected. At all times, you have the right to request that we stop
+                                processing your data, thereby authorizing us to delete or destroy your data in our
+                                possession. Should you have any questions on how we process your data, you may contact
+                                our Helpdesk – helpdesk@rainoil.com
+
+                              </p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="px-6 mt-3 mb-3 sm:mt-4 sm:flex sm:flex-row-reverse">
+                <button type="button"
+                  class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:w-auto sm:text-sm"
+                  @click="open = false">
+                  Cancel
+                </button>
+              </div>
+            </DialogPanel>
+          </TransitionChild>
+        </div>
+      </div>
+    </Dialog>
+  </TransitionRoot>
 </template>
 <script setup>
 import { ref, computed } from "vue";
@@ -249,9 +237,11 @@ import { getErrorMessage } from "../../util/ServerUtil";
 import { useSignup } from "../../stores/signup";
 import Datepicker from 'vuejs3-datepicker';
 import AuthService from "../../service/authentication.service";
+import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
 
 const toast = useToast();
 const router = useRouter();
+const open = ref(false);
 
 const { setSignupUser } = useSignup();
 
@@ -313,32 +303,36 @@ const v$ = useVuelidate(rules, signupForm);
 async function signup() {
   console.log(signupForm);
   const valid = await v$.value.$validate();
-  if (valid) {
-    loading.value = true;
-    signupForm.value.password_confirmation = signupForm.value.password;
-    AuthService.signUp(signupForm.value)
-      .then((result) => {
-        const { data } = result.data;
-        setSignupUser(data);
-        toast.success("Registration successful");
-        router.push("/signup-successful");
-      })
-      .catch((error) => {
-        if(error != undefined && error.data != undefined){
-          if ("email" in error.data.data) {
-          toast.error("An account with this email already exist");
-          } else {
-            const { data } = error;
-            toast.error(getErrorMessage(data));
+  if (signupForm.value.terms != true){
+    toast.error("Please accept the Terms and Conditions to continue.");
+  }else{
+    if (valid) {
+      loading.value = true;
+      signupForm.value.password_confirmation = signupForm.value.password;
+      AuthService.signUp(signupForm.value)
+        .then((result) => {
+          const { data } = result.data;
+          setSignupUser(data);
+          toast.success("Registration successful");
+          router.push("/signup-successful");
+        })
+        .catch((error) => {
+          if(error != undefined && error.data != undefined){
+            if ("email" in error.data.data) {
+            toast.error("An account with this email already exist");
+            } else {
+              const { data } = error;
+              toast.error(getErrorMessage(data));
+            }
           }
-        }
-        else{
-          toast.error("An unexpected error has occured please try again");
-        }      
-      })
-      .finally(() => {
-        loading.value = false;
-      });
+          else{
+            toast.error("An unexpected error has occured please try again");
+          }      
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+    }
   }
 
   if (!valid) {
